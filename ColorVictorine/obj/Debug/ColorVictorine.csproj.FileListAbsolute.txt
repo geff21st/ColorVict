@@ -1,0 +1,12 @@
+d:\documents\visual studio 2013\Projects\ColorVictorine\ColorVictorine\bin\Debug\ColorVictorine.exe.config
+d:\documents\visual studio 2013\Projects\ColorVictorine\ColorVictorine\bin\Debug\ColorVictorine.exe
+d:\documents\visual studio 2013\Projects\ColorVictorine\ColorVictorine\bin\Debug\ColorVictorine.pdb
+d:\documents\visual studio 2013\Projects\ColorVictorine\ColorVictorine\obj\Debug\ColorVictorine.csprojResolveAssemblyReference.cache
+d:\documents\visual studio 2013\Projects\ColorVictorine\ColorVictorine\obj\Debug\ColorVictorine.MainForm.resources
+d:\documents\visual studio 2013\Projects\ColorVictorine\ColorVictorine\obj\Debug\ColorVictorine.Properties.Resources.resources
+d:\documents\visual studio 2013\Projects\ColorVictorine\ColorVictorine\obj\Debug\ColorVictorine.csproj.GenerateResource.Cache
+d:\documents\visual studio 2013\Projects\ColorVictorine\ColorVictorine\obj\Debug\ColorVictorine.exe
+d:\documents\visual studio 2013\Projects\ColorVictorine\ColorVictorine\obj\Debug\ColorVictorine.pdb
+d:\Documents\Visual Studio 2013\Projects\ColorVictorine\ColorVictorine\obj\Debug\ColorVictorine.csproj.ResolveComReference.cache
+d:\Documents\Visual Studio 2013\Projects\ColorVictorine\ColorVictorine\obj\Debug\Interop.DXTRANSLib.dll
+D:\Documents\Visual Studio 2013\Projects\ColorVictorine\ColorVictorine\bin\Debug\NAudio.xml

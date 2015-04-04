@@ -1,0 +1,10 @@
+#ee0000 красный sounds\red.mp3
+#750045 фиолетовый sounds\purple.mp3
+#0d3783 синий sounds\blue.mp3
+#0088ff голубой sounds\cyan.mp3
+#0a6d36 зеленый sounds\green.mp3
+#ffee00 желтый sounds\yellow.mp3
+#474747 серый sounds\gray.mp3
+#FF8800	оранжевый sounds\orange.mp3
+#990000 бордовый sounds\vinous.mp3
+#ff00ff пурпурный sounds\magenta.mp3
