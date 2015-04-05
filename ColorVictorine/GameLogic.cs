@@ -12,8 +12,8 @@ namespace ColorVictorine
     {
         private   Control   panel;
         public    GameData  data;
-        public    Color     qlabel_color  = Color.DodgerBlue;
-        public    Color     txt_color     = Color.FromArgb(60,60,60);
+        public    Color     qlabel_color  = Color.FromArgb(80, 80, 80);
+        public    Color     txt_color     = Color.FromArgb(60, 60, 60);
 
         public    Label     stat_label;   
         public    Label     quest_label;
@@ -73,7 +73,7 @@ namespace ColorVictorine
 
         public void LoadField(int level)
         {
-            bool k = false;
+            bool k = true;
             this.level = level;
 
             
@@ -83,22 +83,31 @@ namespace ColorVictorine
                 case 1:
                     ans_type = 1;
                     quest_type = 1;
-                    k = true;
                     break;
                 case 2: 
                     ans_type = 2;
                     quest_type = 1;
-                    k = true;
                     break;
                 case 3:
                     ans_type = 1;
                     quest_type = 2;
-                    k = true;
                     break;
                 case 4:
                     quest_type = 2;
                     ans_type = 2;
-                    k = true;
+                    break;
+                case 5:
+                    quest_type = 3;
+                    ans_type = 1;
+                    break;
+                case 6:
+                    quest_type = 3;
+                    ans_type = 2;
+                    break;
+                case 7:
+                    quest_type = 4;
+                    ans_type = 3;
+                    k = false;
                     break;
             }
             SetTrueAns(ans_type);
@@ -106,7 +115,19 @@ namespace ColorVictorine
             SetQuestLabels();
         }
 
-        int RndNum(int from, int to, int except)
+        void PlaseLabels()
+        {
+            switch (quest_type)
+            {
+                case 1:
+                case 2:
+                    break;
+                case 3:
+                    break;
+            }
+        }
+
+        int RndNum(int to, int except)
         {
             int ans;
             if (except == -1) return r.Next(to);
@@ -119,8 +140,8 @@ namespace ColorVictorine
 
         void SetTrueAns(int type)
         {
-            true_ans = RndNum(0, data.N, true_ans);
-            true_lbl = RndNum(0, ans_num, true_lbl);
+            true_ans = RndNum(data.N, true_ans);
+            true_lbl = RndNum(ans_num, true_lbl);
             ans_labels[true_lbl].Tag = true_ans;
             switch (type)
             {
@@ -141,7 +162,7 @@ namespace ColorVictorine
             for (int i = 0; i < ans_num; i++)
             {
                 ans_labels[i].Visible = k;
-
+                if (!k) continue;
                 if (i == true_lbl) continue;
 
                 do
@@ -163,6 +184,10 @@ namespace ColorVictorine
                         break;
                 }
             }
+
+            if (k) return;
+
+
         }
 
         public void SetQuestLabels()
@@ -181,6 +206,11 @@ namespace ColorVictorine
                     quest_color.BackColor = qlabel_color;
                     quest_color.Text = "прослушать";
                     data.PlaySound(true_ans);
+                    break;
+                case 3:
+                    quest_color.Click -= quest_color_MouseDown;
+                    quest_color.BackColor = qlabel_color;
+                    quest_color.Text = data.names[true_ans];
                     break;
             }
         }
