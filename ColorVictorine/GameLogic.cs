@@ -436,7 +436,7 @@ namespace ColorVictorine
         public   Size       client_size;
         private  Label[]    ans_labels;
 
-        public   string     mode        =    "infinity";
+        public   string     mode        =    "бесконечный";
         private  int        max_err;
         public   Control    panel;
         private  int        ans_num     =    6;
@@ -496,7 +496,8 @@ namespace ColorVictorine
 
             field.LoadField(level);
 
-            field.stat_label.Text = "[ Верно: " + true_clicks.ToString().PadLeft(3) + " | " +
+            field.stat_label.Text = "Режим: [" + mode + "]   [ Верно: " + 
+                                    true_clicks.ToString().PadLeft(3) + " | " +
                                     "Ошибок: "  + wrng_clicks.ToString().PadLeft(3) + " ]";
         }
 
@@ -512,7 +513,7 @@ namespace ColorVictorine
         public void SetErrMode(int err)
         {
             max_err = err;
-            mode = "errors";
+            mode = "ошибки";
         }
 
         public void SetRandLevel()
@@ -572,7 +573,7 @@ namespace ColorVictorine
 
             switch (mode)
             {
-                case "errors":
+                case "ошибки":
                     if (wrng_clicks >= max_err) EndGame();
                     break;
             }
