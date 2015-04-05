@@ -142,7 +142,7 @@ namespace ColorVictorine
         int RndNum(int to, int except)
         {
             int ans;
-            if (except == -1) return r.Next(to);
+            if (except < 0) return r.Next(to);
             do
             {
                 ans = r.Next(to);
@@ -152,20 +152,32 @@ namespace ColorVictorine
 
         void SetTrueAns(int type)
         {
-            true_ans = RndNum(data.N, true_ans);
-            true_lbl = RndNum(ans_num, true_lbl);
-            ans_labels[true_lbl].Tag = true_ans;
-            switch (type)
+            if (type < 3)
             {
-                case 1:
-                    ans_labels[true_lbl].Text = "";
-                    ans_labels[true_lbl].BackColor = data.colors[true_ans];
-                    break;
-                case 2:
-                    ans_labels[true_lbl].BackColor = data.bg_clr;
-                    ans_labels[true_lbl].ForeColor = txt_color;
-                    ans_labels[true_lbl].Text = data.names[true_ans].ToUpper();
-                    break;
+                true_ans = ans_num != 2 ? RndNum(data.N, true_ans) : RndNum(data.N, -1);
+                true_lbl = RndNum(ans_num, true_lbl);
+                ans_labels[true_lbl].Tag = true_ans;
+                switch (type)
+                {
+                    case 1:
+                        ans_labels[true_lbl].Text = "";
+                        ans_labels[true_lbl].BackColor = data.colors[true_ans];
+                        break;
+                    case 2:
+                        ans_labels[true_lbl].BackColor = data.bg_clr;
+                        ans_labels[true_lbl].ForeColor = txt_color;
+                        ans_labels[true_lbl].Text = data.names[true_ans].ToUpper();
+                        break;
+                }
+            }
+            else
+            {
+                seven_text  = RndNum(data.N, seven_text);
+
+                true_ans = r.Next(2);
+
+                seven_color = true_ans == 0 ? seven_text : RndNum(data.N, -1);
+
             }
             
         }
@@ -176,29 +188,32 @@ namespace ColorVictorine
             int ans;
             for (int i = 0; i < ans_num; i++)
             {
-                if (i == true_lbl) continue;
+                if (i == true_lbl && type!= 3) continue;
 
                 do
                 {
                     ans = r.Next(data.N);
                 } while (ans == true_ans || ColorIsExist(i, ans));
 
-                ans_labels[i].Tag = ans;
+                
 
                 switch (type)
                 {
                     case 1:
                         ans_labels[i].Text = "";
+                        ans_labels[i].Tag = ans;
                         ans_labels[i].ForeColor = txt_color;
                         ans_labels[i].BackColor = data.colors[ans];
                         break;
                     case 2:
                         ans_labels[i].Text = data.names[ans].ToUpper();
+                        ans_labels[i].Tag = ans;
                         ans_labels[i].ForeColor = txt_color;
                         ans_labels[i].BackColor = data.bg_clr;
                         break;
                     case 3:
                         ans_labels[i].Text = data.seven_bttns_txt[i];
+                        ans_labels[i].Tag = i;
                         ans_labels[i].ForeColor = Color.White;
                         ans_labels[i].BackColor = data.seven_bttns_clr[i];
                         break;
@@ -214,30 +229,31 @@ namespace ColorVictorine
             switch (quest_type)
             {
                 case 1:
-                    quest_color.Click -= quest_color_MouseDown;
-                    quest_color.BackColor = data.colors[true_ans];
-                    quest_color.Text = "";
+                    quest_color.Click      -=   quest_color_MouseDown;
+                    quest_color.BackColor   =   data.colors[true_ans];
+                    quest_color.Text        =   "";
                     break;
                 case 2:
-                    quest_color.Click += quest_color_MouseDown;
-                    quest_color.BackColor = qlabel_color;
-                    quest_color.Font = data.small_font;
-                    quest_color.Text = "прослушать";
+                    quest_color.Click      +=   quest_color_MouseDown;
+                    quest_color.BackColor   =   qlabel_color;
+                    quest_color.ForeColor   =   Color.White;
+                    quest_color.Font        =   data.small_font;
+                    quest_color.Text        =   "прослушать";
                     data.PlaySound(true_ans);
                     break;
                 case 3:
-                    quest_color.Click -= quest_color_MouseDown;
-                    quest_color.BackColor = qlabel_color;
-                    quest_color.ForeColor = Color.White;
-                    quest_color.Font = data.small_font;
-                    quest_color.Text = data.names[true_ans];
+                    quest_color.Click      -=   quest_color_MouseDown;
+                    quest_color.BackColor   =   qlabel_color;
+                    quest_color.ForeColor   =   Color.White;
+                    quest_color.Font        =   data.small_font;
+                    quest_color.Text        =   data.names[true_ans];
                     break;
                 case 4:
-                    quest_color.Click -= quest_color_MouseDown;
-                    quest_color.BackColor = panel.BackColor;
-                    quest_color.ForeColor = txt_color;
-                    quest_color.Font = data.big_font;
-                    quest_color.Text = "Это седьмой уровень, детка!";
+                    quest_color.Click      -=   quest_color_MouseDown;
+                    quest_color.BackColor   =   panel.BackColor;
+                    quest_color.ForeColor   =   data.colors[seven_color];
+                    quest_color.Font        =   data.big_font;
+                    quest_color.Text        =   data.names[seven_text].ToUpper();
                     break;
             }
         }
