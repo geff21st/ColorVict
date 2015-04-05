@@ -12,6 +12,9 @@ namespace ColorVictorine
 {
     class GameData
     {
+        public Font big_font   = new Font("Calibri", 26F, FontStyle.Bold, GraphicsUnit.Point, 204);
+        public Font small_font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 204);
+
         public Color     bg_clr =  Color.FromArgb(225, 225, 225);
         public Color  [] colors { get; private set; }
         public string [] names  { get; private set; }

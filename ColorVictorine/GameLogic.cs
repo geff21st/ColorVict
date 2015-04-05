@@ -218,13 +218,23 @@ namespace ColorVictorine
                 case 2:
                     quest_color.Click += quest_color_MouseDown;
                     quest_color.BackColor = qlabel_color;
+                    quest_color.Font = data.small_font;
                     quest_color.Text = "прослушать";
                     data.PlaySound(true_ans);
                     break;
                 case 3:
                     quest_color.Click -= quest_color_MouseDown;
                     quest_color.BackColor = qlabel_color;
+                    quest_color.ForeColor = Color.White;
+                    quest_color.Font = data.small_font;
                     quest_color.Text = data.names[true_ans];
+                    break;
+                case 4:
+                    quest_color.Click -= quest_color_MouseDown;
+                    quest_color.BackColor = panel.BackColor;
+                    quest_color.ForeColor = txt_color;
+                    quest_color.Font = data.big_font;
+                    quest_color.Text = "Это седьмой уровень, детка!";
                     break;
             }
         }
@@ -279,7 +289,7 @@ namespace ColorVictorine
                                     ans_start.X, ans_start.X + 20);
             quest_label.BackColor = data.bg_clr;
             quest_label.ForeColor = txt_color;
-            quest_label.Font = new Font("Calibri", 26F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            quest_label.Font = data.big_font;
             quest_label.TextAlign = ContentAlignment.MiddleCenter;
             quest_label.BorderStyle = BorderStyle.None;
             panel.Controls.Add(quest_label);
@@ -291,7 +301,7 @@ namespace ColorVictorine
             quest_color.Location = QColorLocation(1);
             quest_color.BackColor = data.bg_clr;
             quest_color.ForeColor = Color.White;
-            quest_color.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            quest_color.Font = data.small_font;
             quest_color.TextAlign = ContentAlignment.MiddleCenter;
             quest_color.BorderStyle = BorderStyle.None;
             panel.Controls.Add(quest_color);
