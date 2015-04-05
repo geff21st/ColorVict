@@ -58,11 +58,23 @@ namespace ColorVictorine
         private void newGameMenuItem_Click(object sender, EventArgs e)
         {
             game.NewGame();
-            game.SetLevel(1);        }
+            game.SetLevel(1);  
+        }
 
         private void randLevelMenuItem_Click(object sender, EventArgs e)
         {
             game.SetRandLevel();
+        }
+
+        private void ErrMenuItem_Click(object sender, EventArgs e)
+        {
+            var item = (ToolStripMenuItem)sender;
+            game.SetErrMode(int.Parse(item.Tag.ToString()));
+        }
+
+        private void exitMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

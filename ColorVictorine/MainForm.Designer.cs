@@ -39,14 +39,15 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.gameMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newGameMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.divider = new System.Windows.Forms.ToolStripSeparator();
+            this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gameModeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.endlessMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toXerrMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ошибкиToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ошибкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ошибокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.twoErrMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.threeErrMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fiveErrMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tenErrMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forTimeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.секToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.минToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -188,8 +189,8 @@
             // 
             this.gameMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newGameMenuItem,
-            this.toolStripMenuItem1,
-            this.выходToolStripMenuItem});
+            this.divider,
+            this.exitMenuItem});
             this.gameMenuItem.Name = "gameMenuItem";
             this.gameMenuItem.Size = new System.Drawing.Size(46, 20);
             this.gameMenuItem.Text = "Игра";
@@ -197,20 +198,21 @@
             // newGameMenuItem
             // 
             this.newGameMenuItem.Name = "newGameMenuItem";
-            this.newGameMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.newGameMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newGameMenuItem.Text = "Новая игра";
             this.newGameMenuItem.Click += new System.EventHandler(this.newGameMenuItem_Click);
             // 
-            // toolStripMenuItem1
+            // divider
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(133, 6);
+            this.divider.Name = "divider";
+            this.divider.Size = new System.Drawing.Size(149, 6);
             // 
-            // выходToolStripMenuItem
+            // exitMenuItem
             // 
-            this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.выходToolStripMenuItem.Text = "Выход";
+            this.exitMenuItem.Name = "exitMenuItem";
+            this.exitMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitMenuItem.Text = "Выход";
+            this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
             // 
             // gameModeMenuItem
             // 
@@ -225,36 +227,51 @@
             // endlessMenuItem
             // 
             this.endlessMenuItem.Name = "endlessMenuItem";
-            this.endlessMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.endlessMenuItem.Size = new System.Drawing.Size(152, 22);
             this.endlessMenuItem.Text = "Бесконечный";
             // 
             // toXerrMenuItem
             // 
             this.toXerrMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ошибкиToolStripMenuItem1,
-            this.ошибкиToolStripMenuItem,
-            this.ошибокToolStripMenuItem});
+            this.twoErrMenuItem,
+            this.threeErrMenuItem,
+            this.fiveErrMenuItem,
+            this.tenErrMenuItem});
             this.toXerrMenuItem.Name = "toXerrMenuItem";
-            this.toXerrMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.toXerrMenuItem.Size = new System.Drawing.Size(152, 22);
             this.toXerrMenuItem.Text = "До Х ошибок";
             // 
-            // ошибкиToolStripMenuItem1
+            // twoErrMenuItem
             // 
-            this.ошибкиToolStripMenuItem1.Name = "ошибкиToolStripMenuItem1";
-            this.ошибкиToolStripMenuItem1.Size = new System.Drawing.Size(128, 22);
-            this.ошибкиToolStripMenuItem1.Text = "2 ошибки";
+            this.twoErrMenuItem.Name = "twoErrMenuItem";
+            this.twoErrMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.twoErrMenuItem.Tag = "2";
+            this.twoErrMenuItem.Text = "2 ошибки";
+            this.twoErrMenuItem.Click += new System.EventHandler(this.ErrMenuItem_Click);
             // 
-            // ошибкиToolStripMenuItem
+            // threeErrMenuItem
             // 
-            this.ошибкиToolStripMenuItem.Name = "ошибкиToolStripMenuItem";
-            this.ошибкиToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
-            this.ошибкиToolStripMenuItem.Text = "3 ошибки";
+            this.threeErrMenuItem.Name = "threeErrMenuItem";
+            this.threeErrMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.threeErrMenuItem.Tag = "3";
+            this.threeErrMenuItem.Text = "3 ошибки";
+            this.threeErrMenuItem.Click += new System.EventHandler(this.ErrMenuItem_Click);
             // 
-            // ошибокToolStripMenuItem
+            // fiveErrMenuItem
             // 
-            this.ошибокToolStripMenuItem.Name = "ошибокToolStripMenuItem";
-            this.ошибокToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
-            this.ошибокToolStripMenuItem.Text = "5 ошибок";
+            this.fiveErrMenuItem.Name = "fiveErrMenuItem";
+            this.fiveErrMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fiveErrMenuItem.Tag = "5";
+            this.fiveErrMenuItem.Text = "5 ошибок";
+            this.fiveErrMenuItem.Click += new System.EventHandler(this.ErrMenuItem_Click);
+            // 
+            // tenErrMenuItem
+            // 
+            this.tenErrMenuItem.Name = "tenErrMenuItem";
+            this.tenErrMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.tenErrMenuItem.Tag = "10";
+            this.tenErrMenuItem.Text = "10 ошибок";
+            this.tenErrMenuItem.Click += new System.EventHandler(this.ErrMenuItem_Click);
             // 
             // forTimeMenuItem
             // 
@@ -264,7 +281,7 @@
             this.минToolStripMenuItem1,
             this.минToolStripMenuItem2});
             this.forTimeMenuItem.Name = "forTimeMenuItem";
-            this.forTimeMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.forTimeMenuItem.Size = new System.Drawing.Size(152, 22);
             this.forTimeMenuItem.Text = "На время";
             // 
             // секToolStripMenuItem
@@ -439,8 +456,8 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem gameMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newGameMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator divider;
+        private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
         private System.Windows.Forms.ToolStripMenuItem levelMenuItem;
         private System.Windows.Forms.ToolStripMenuItem level1MenuItem;
         private System.Windows.Forms.ToolStripMenuItem level2MenuItem;
@@ -457,15 +474,16 @@
         private System.Windows.Forms.ToolStripMenuItem gameModeMenuItem;
         private System.Windows.Forms.ToolStripMenuItem endlessMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toXerrMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ошибкиToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem ошибкиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ошибокToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem twoErrMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem threeErrMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fiveErrMenuItem;
         private System.Windows.Forms.ToolStripMenuItem forTimeMenuItem;
         private System.Windows.Forms.ToolStripMenuItem секToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem минToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem минToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem минToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem level7MenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tenErrMenuItem;
     }
 }
 

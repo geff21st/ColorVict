@@ -435,14 +435,16 @@ namespace ColorVictorine
                             
         public   Size       client_size;
         private  Label[]    ans_labels;
-                            
-        public   Control    panel;
-        private  int        ans_num     = 6;
-        private  int        level       = 1;
-        private  int        max_level   = 7;
 
-        private  int        true_clicks = 0;
-        private  int        wrng_clicks = 0;
+        public   string     mode        =    "infinity";
+        private  int        max_err;
+        public   Control    panel;
+        private  int        ans_num     =    6;
+        private  int        level       =    1;
+        private  int        max_level   =    7;
+
+        private  int        true_clicks =    0;
+        private  int        wrng_clicks =    0;
 
         private  bool       rnd_level = false;
 
@@ -507,6 +509,12 @@ namespace ColorVictorine
             set_cli_size(field.ClientSize(field.ans_type));
         }
 
+        public void SetErrMode(int err)
+        {
+            max_err = err;
+            mode = "errors";
+        }
+
         public void SetRandLevel()
         {
             rnd_level = true;
@@ -552,16 +560,28 @@ namespace ColorVictorine
         private void ans_MouseDown  (object sender, MouseEventArgs e)
         {
             var lbl = (Control)sender;
-            if ((int)lbl.Tag == field.true_ans)
-            {
-                true_clicks++;
-            }
-            else
-            {
-                wrng_clicks++;
-            }
 
+            PerformeAct((int)lbl.Tag == field.true_ans);
             LoadLevel(false);
+        }
+
+        void PerformeAct(bool k)
+        {
+            true_clicks = k  ? true_clicks + 1 : true_clicks;
+            wrng_clicks = !k ? wrng_clicks + 1 : wrng_clicks;
+
+            switch (mode)
+            {
+                case "errors":
+                    if (wrng_clicks >= max_err) EndGame();
+                    break;
+            }
+        }
+
+        void EndGame()
+        {
+            MessageBox.Show("Игра окончена!");
+            NewGame();
         }
     }
 }
