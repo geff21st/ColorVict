@@ -16,6 +16,20 @@ namespace ColorVictorine
         public Color  [] colors { get; private set; }
         public string [] names  { get; private set; }
         public string [] sounds { get; private set; }
+
+        public Color[]   seven_bttns_clr =
+        {
+            ColorTranslator.FromHtml("#0d3783"),
+            ColorTranslator.FromHtml("#ee0000")
+        };
+
+        public string[]  seven_bttns_txt =
+        {
+            "Верно",
+            "Неверно"
+        };
+
+
         
         public string[] questions =
         {

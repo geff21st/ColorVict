@@ -28,6 +28,8 @@ namespace ColorVictorine
                                               
         private   static    Random r      =   new Random();
                                               
+        public    int       seven_text    =   -1;
+        public    int       seven_color   =   -1;
         public    int       true_ans      =   -1;
         public    int       true_lbl      =   -1;
                                               
@@ -117,8 +119,9 @@ namespace ColorVictorine
 
         void PlaseLabels(int ans_type)
         {
+            int num;
             SetTrueAns(ans_type);
-            SetAnsLabels(ans_type);
+            
             SetQuestLabels();
 
             quest_label.Size = QLabelSize(quest_type);
@@ -127,14 +130,10 @@ namespace ColorVictorine
             PlaceAnsLabes(AnsStartPoint(ans_type));
             set_cli_size(ClientSize(ans_type));
 
-            if (ans_type == 3)
-            {
-                ShowAns(yesno_num);
-            }
-            else
-            {
-                ShowAns(ans_num);
-            }
+            num = ans_type == 3 ? yesno_num : ans_num;
+            
+            SetAnsLabels(num, ans_type);
+            ShowAns(num);
         }
 
         int RndNum(int to, int except)
@@ -161,6 +160,7 @@ namespace ColorVictorine
                     break;
                 case 2:
                     ans_labels[true_lbl].BackColor = data.bg_clr;
+                    ans_labels[true_lbl].ForeColor = txt_color;
                     ans_labels[true_lbl].Text = data.names[true_ans].ToUpper();
                     break;
             }
@@ -168,7 +168,7 @@ namespace ColorVictorine
         }
 
 
-        void SetAnsLabels(int type = 0)
+        void SetAnsLabels(int ans_num, int type)
         {
             int ans;
             for (int i = 0; i < ans_num; i++)
@@ -186,11 +186,18 @@ namespace ColorVictorine
                 {
                     case 1:
                         ans_labels[i].Text = "";
+                        ans_labels[i].ForeColor = txt_color;
                         ans_labels[i].BackColor = data.colors[ans];
                         break;
                     case 2:
                         ans_labels[i].Text = data.names[ans].ToUpper();
+                        ans_labels[i].ForeColor = txt_color;
                         ans_labels[i].BackColor = data.bg_clr;
+                        break;
+                    case 3:
+                        ans_labels[i].Text = data.seven_bttns_txt[i];
+                        ans_labels[i].ForeColor = Color.White;
+                        ans_labels[i].BackColor = data.seven_bttns_clr[i];
                         break;
                 }
             }
@@ -245,7 +252,7 @@ namespace ColorVictorine
 
             if (type == 3)
             {
-                height = AnsStartPoint(type).Y + ans_start.X + ans_size.Height;
+                height = AnsStartPoint(type).Y + ans_start.X + ans_size.Height + space;
             }
             else
             {
