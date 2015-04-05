@@ -31,6 +31,7 @@ namespace ColorVictorine
         public    int       true_lbl      = -1;
         
         public    int       ans_num       { get;           set; }
+        public    int       yesno_num     = 2;
         public    int       ans_type      { get; protected set; }
         public    int       quest_type    { get; private   set; }
         private   int       level = 1;
@@ -75,9 +76,7 @@ namespace ColorVictorine
         {
             bool k = true;
             this.level = level;
-
             
-
             switch (level)
             {
                 case 1:
@@ -97,33 +96,39 @@ namespace ColorVictorine
                     ans_type = 2;
                     break;
                 case 5:
-                    quest_type = 3;
+                    quest_type = 4;
                     ans_type = 1;
                     break;
                 case 6:
-                    quest_type = 3;
+                    quest_type = 4;
                     ans_type = 2;
                     break;
                 case 7:
-                    quest_type = 4;
+                    quest_type = 3;
                     ans_type = 3;
                     k = false;
                     break;
             }
-            SetTrueAns(ans_type);
-            SetAnsLabels(k, ans_type);
-            SetQuestLabels();
+            PlaseLabels(ans_type);
         }
 
-        void PlaseLabels()
+        void PlaseLabels(int ans_type)
         {
-            switch (quest_type)
+            SetTrueAns(ans_type);
+            SetAnsLabels(ans_type);
+            SetQuestLabels();
+
+            quest_label.Size = QLabelSize(quest_type);
+            quest_color.Size = QColorSize(quest_type);
+            quest_color.Location = QColorLocation(quest_type);
+
+            if (ans_type == 3)
             {
-                case 1:
-                case 2:
-                    break;
-                case 3:
-                    break;
+                PlaceAnsLabes(new Point(ans_start.X, ans_start.Y + ans_size.Height + space * 2));
+            }
+            else
+            {
+                PlaceAnsLabes(ans_start);
             }
         }
 
@@ -156,13 +161,11 @@ namespace ColorVictorine
             }
             
         }
-        void SetAnsLabels(bool k, int type = 0)
+        void SetAnsLabels(int type = 0)
         {
             int ans;
             for (int i = 0; i < ans_num; i++)
             {
-                ans_labels[i].Visible = k;
-                if (!k) continue;
                 if (i == true_lbl) continue;
 
                 do
@@ -184,9 +187,6 @@ namespace ColorVictorine
                         break;
                 }
             }
-
-            if (k) return;
-
 
         }
 
@@ -249,14 +249,10 @@ namespace ColorVictorine
         {
             //текст вопроса
             quest_label = new Label();
-            quest_label.Size = new Size(
-                    client_size.Width - qcolor_size.Width - ans_start.X*2 - space,
-                    qcolor_size.Height
-                );
+            quest_label.Size = QLabelSize(1);
             quest_label.Text = "Текст вопроса";
-            quest_label.Location = new Point(
-                    ans_start.X, ans_start.X + 20
-                );
+            quest_label.Location = new Point (
+                                    ans_start.X, ans_start.X + 20);
             quest_label.BackColor = data.bg_clr;
             quest_label.ForeColor = txt_color;
             quest_label.Font = new Font("Calibri", 26F, FontStyle.Bold, GraphicsUnit.Point, 204);
@@ -266,12 +262,9 @@ namespace ColorVictorine
 
             //цвет вопроса
             quest_color = new Label();
-            quest_color.Size = qcolor_size;
+            quest_color.Size = QColorSize(1);
             quest_color.Text = "Цвет вопроса";
-            quest_color.Location = new Point(
-                    ans_start.X + quest_label.Width + space,
-                    quest_label.Location.Y
-                );
+            quest_color.Location = QColorLocation(1);
             quest_color.BackColor = data.bg_clr;
             quest_color.ForeColor = Color.White;
             quest_color.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 204);
@@ -297,6 +290,35 @@ namespace ColorVictorine
             stat_label.BorderStyle = BorderStyle.None;
             panel.Controls.Add(stat_label);
         }
+        
+        Point QColorLocation(int type)
+        {
+            return type == 3
+                   ?
+                   ans_start
+                   :
+                   new Point(ans_start.X + quest_label.Width + space,
+                              quest_label.Location.Y);
+        }
+        Size QColorSize(int type)
+        {
+            return type == 3
+                   ?
+                   new Size(QLabelSize(type).Width, ans_size.Height)
+                   :
+                   qcolor_size;
+        }
+        Size QLabelSize(int type)
+        {
+            return type != 3
+                   ?
+                   new Size(client_size.Width - qcolor_size.Width - ans_start.X * 2 - space,
+                             qcolor_size.Height)
+                   :
+                   new Size(client_size.Width - ans_start.X * 2,
+                             qcolor_size.Height);
+        }
+
         private void CreateAnsLabels()
         {
             ans_labels = new Label[ans_num];
@@ -304,16 +326,30 @@ namespace ColorVictorine
             {
                 CreateAnsLabel(i);
             }
+
+            PlaceAnsLabes(ans_start);
         }
+        
+        void PlaceAnsLabes(Point ans_start)
+        {
+            for (int i = 0; i < ans_num; i++)
+            {
+                ans_labels[i].Location = new Point(
+                        ans_start.X + (space + ans_size.Width)*(i%columns),
+                        ans_start.Y + (space + ans_size.Height)*(i/columns)
+                    );
+            }
+        }
+
         private void CreateAnsLabel(int i)
         {
             ans_labels[i] = new Label();
             ans_labels[i].Size = ans_size;
             ans_labels[i].Tag = -1;
-            ans_labels[i].Location = new Point(
-                    ans_start.X + (space + ans_size.Width)*(i%columns),
-                    ans_start.Y + (space + ans_size.Height)*(i/columns)
-                );
+            //ans_labels[i].Location = new Point(
+            //        ans_start.X + (space + ans_size.Width)*(i%columns),
+            //        ans_start.Y + (space + ans_size.Height)*(i/columns)
+            //    );
             ans_labels[i].ForeColor = txt_color;
             ans_labels[i].Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 204);
             ans_labels[i].TextAlign = ContentAlignment.MiddleCenter;
