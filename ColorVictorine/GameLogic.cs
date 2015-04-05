@@ -13,7 +13,7 @@ namespace ColorVictorine
         private   Control   panel;
         public    GameData  data;
         public    Color     qlabel_color  = Color.DodgerBlue;
-        public    Color     txt_color     = Color.FromArgb(60,60,70);
+        public    Color     txt_color     = Color.FromArgb(60,60,60);
 
         public    Label     stat_label;   
         public    Label     quest_label;
@@ -73,7 +73,6 @@ namespace ColorVictorine
 
         public void LoadField(int level)
         {
-            Color q_color = Color.DodgerBlue;
             bool k = false;
             this.level = level;
 
@@ -173,12 +172,12 @@ namespace ColorVictorine
             switch (quest_type)
             {
                 case 1:
-                    quest_color.MouseDown -= quest_color_MouseDown;
+                    quest_color.Click -= quest_color_MouseDown;
                     quest_color.BackColor = data.colors[true_ans];
                     quest_color.Text = "";
                     break;
                 case 2:
-                    quest_color.MouseDown += quest_color_MouseDown;
+                    quest_color.Click += quest_color_MouseDown;
                     quest_color.BackColor = qlabel_color;
                     quest_color.Text = "прослушать";
                     data.PlaySound(true_ans);
@@ -186,7 +185,7 @@ namespace ColorVictorine
             }
         }
 
-        void quest_color_MouseDown(object sender, MouseEventArgs e)
+        void quest_color_MouseDown(object sender, EventArgs e)
         {
             data.PlaySound(true_ans);
         }

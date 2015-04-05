@@ -62,10 +62,12 @@ namespace ColorVictorine
 
         public void PlaySound(int i)
         {
-            
+            waveOutDevice.Dispose();
+            waveOutDevice = new WaveOut();
             audioFileReader = new AudioFileReader(sounds[i]);
+            //waveOutDevice.Stop();
             waveOutDevice.Init(audioFileReader);
-            waveOutDevice.Stop();
+            //waveOutDevice.Stop();
             waveOutDevice.Play();
             //audio = new Audio(sounds[i], true);
             //audio.Play();
