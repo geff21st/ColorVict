@@ -16,14 +16,7 @@ namespace ColorVictorine
         public Color  [] colors { get; private set; }
         public string [] names  { get; private set; }
         public string [] sounds { get; private set; }
-        public int       N      { get; private set; }
-
-        IWavePlayer waveOutDevice;
-        AudioFileReader audioFileReader;
-
-        //WMPLib.WindowsMediaPlayer player = new WMPLib.WindowsMediaPlayer();
-        //System.Media.SoundPlayer player = new System.Media.SoundPlayer();
-
+        
         public string[] questions =
         {
             "Найди такой же цвет:",
@@ -34,6 +27,11 @@ namespace ColorVictorine
             "Какой цвет называется также?",
             "Верно ли соответствие?"
         };
+
+        public int       N      { get; private set; }
+        
+        IWavePlayer waveOutDevice;
+        AudioFileReader audioFileReader;
 
         public GameData()
         {
@@ -64,18 +62,12 @@ namespace ColorVictorine
 
         public void PlaySound(int i)
         {
-            waveOutDevice.Dispose();
+            waveOutDevice.Stop();
+            //waveOutDevice.Dispose();
             waveOutDevice = new WaveOut();
             audioFileReader = new AudioFileReader(sounds[i]);
-            //waveOutDevice.Stop();
             waveOutDevice.Init(audioFileReader);
-            //waveOutDevice.Stop();
             waveOutDevice.Play();
-            //audio = new Audio(sounds[i], true);
-            //audio.Play();
-            //player.SoundLocation = sounds[i];
-            //player.Load();
-            //player.Play();
         }
     }
 }

@@ -10,6 +10,7 @@ namespace ColorVictorine
 {
     internal class GameField
     {
+        private   DelegateSetSize set_cli_size;
         private   Control   panel;
         public    GameData  data;
         public    Color     qlabel_color  =   Color.FromArgb(80, 80, 80);
@@ -21,7 +22,7 @@ namespace ColorVictorine
         public    Label[]   ans_labels;
 
         private   Size      ans_size      =   new Size(400, 120);
-        private   Size      qcolor_size   =   new Size(200, 90);
+        private   Size      qcolor_size   =   new Size(220, 90);
         public    Size      client_size   {   get; protected set; }
         private   Point     ans_start;        
                                               
@@ -41,9 +42,10 @@ namespace ColorVictorine
         private   int       border        =   24;
 
 
-        public GameField(Control panel, int ans_num)//, GameData game_data)
+        public GameField(Control panel, int ans_num, DelegateSetSize set_cli_size)
         {
             this.panel = panel;
+            this.set_cli_size = set_cli_size;
             this.ans_num = ans_num;
             Init();
         }
@@ -97,15 +99,15 @@ namespace ColorVictorine
                     ans_type = 2;
                     break;
                 case 5:
-                    quest_type = 4;
+                    quest_type = 3;
                     ans_type = 1;
                     break;
                 case 6:
-                    quest_type = 4;
+                    quest_type = 3;
                     ans_type = 2;
                     break;
                 case 7:
-                    quest_type = 3;
+                    quest_type = 4;
                     ans_type = 3;
                     k = false;
                     break;
@@ -122,16 +124,16 @@ namespace ColorVictorine
             quest_label.Size = QLabelSize(quest_type);
             quest_color.Size = QColorSize(quest_type);
             quest_color.Location = QColorLocation(quest_type);
+            PlaceAnsLabes(AnsStartPoint(ans_type));
+            set_cli_size(ClientSize(ans_type));
 
             if (ans_type == 3)
             {
-                PlaceAnsLabes(new Point(ans_start.X, ans_start.Y + ans_size.Height + space * 2));
                 ShowAns(yesno_num);
             }
             else
             {
                 ShowAns(ans_num);
-                PlaceAnsLabes(ans_start);
             }
         }
 
@@ -235,12 +237,22 @@ namespace ColorVictorine
             return false;
         }
 
-        public Size ClientSize()
+        public Size ClientSize(int type = 1)
         {
-            client_size = new Size(
-                    ans_start.X * 2 + ans_size.Width * columns + space * (columns - 1),
-                    ans_start.Y + (ans_size.Height + space) * (ans_num / columns) - space + ans_start.X
-                );
+            int width, height;
+
+            width = ans_start.X*2 + ans_size.Width*columns + space*(columns - 1);
+
+            if (type == 3)
+            {
+                height = AnsStartPoint(type).Y + ans_start.X + ans_size.Height;
+            }
+            else
+            {
+                height = ans_start.Y + (ans_size.Height + space) * (ans_num / columns) - space + ans_start.X;
+            }
+            
+            client_size = new Size(width,height);
             return client_size;
         }
 
@@ -295,10 +307,19 @@ namespace ColorVictorine
             stat_label.BorderStyle = BorderStyle.None;
             panel.Controls.Add(stat_label);
         }
-        
+
+        Point AnsStartPoint(int type)
+        {
+            return type==3
+                   ?
+                   new Point(ans_start.X, ans_start.Y + ans_size.Height + space*2)
+                   :
+                   ans_start;
+        }
+
         Point QColorLocation(int type)
         {
-            return type == 3
+            return type == 4
                    ?
                    ans_start
                    :
@@ -307,7 +328,7 @@ namespace ColorVictorine
         }
         Size QColorSize(int type)
         {
-            return type == 3
+            return type == 4
                    ?
                    new Size(QLabelSize(type).Width, ans_size.Height)
                    :
@@ -315,7 +336,7 @@ namespace ColorVictorine
         }
         Size QLabelSize(int type)
         {
-            return type != 3
+            return type != 4
                    ?
                    new Size(client_size.Width - qcolor_size.Width - ans_start.X * 2 - space,
                              qcolor_size.Height)
@@ -361,10 +382,6 @@ namespace ColorVictorine
             ans_labels[i] = new Label();
             ans_labels[i].Size = ans_size;
             ans_labels[i].Tag = -1;
-            //ans_labels[i].Location = new Point(
-            //        ans_start.X + (space + ans_size.Width)*(i%columns),
-            //        ans_start.Y + (space + ans_size.Height)*(i/columns)
-            //    );
             ans_labels[i].ForeColor = txt_color;
             ans_labels[i].Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 204);
             ans_labels[i].TextAlign = ContentAlignment.MiddleCenter;
@@ -376,9 +393,10 @@ namespace ColorVictorine
 
     class GameLogic
     {
+        private DelegateSetSize set_cli_size;
+
         private  GameField  field;
                             
-        //private GameData  game_data;
         public   Size       client_size;
         private  Label[]    ans_labels;
                             
@@ -389,15 +407,16 @@ namespace ColorVictorine
         private  int        true_clicks = 0;
         private  int        wrng_clicks = 0;
 
-        public GameLogic(Control panel)
+        public GameLogic(Control panel, DelegateSetSize set_cli_size)
         {
             this.panel = panel;
+            this.set_cli_size = set_cli_size;
             Init();
         }
 
         void Init()
         {
-            field = new GameField(panel, ans_num);
+            field = new GameField(panel, ans_num, set_cli_size);
             client_size = field.client_size;
             
             LoadLevel(true);
@@ -424,8 +443,6 @@ namespace ColorVictorine
         public void LoadLevel(bool next = false)
         {
             field.LoadField(level);
-
-            //if (!next) return;
 
             field.stat_label.Text = "[ Верно: " + true_clicks.ToString().PadLeft(3) + " | " +
                                     "Ошибок: "  + wrng_clicks.ToString().PadLeft(3) + " ]";

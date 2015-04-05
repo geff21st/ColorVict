@@ -10,8 +10,11 @@ using System.Windows.Forms;
 
 namespace ColorVictorine
 {
+    public delegate void DelegateSetSize (Size size);
+
     public partial class MainForm : Form
     {
+        private DelegateSetSize set_cli_size;
         private GameLogic game;
         public MainForm()
         {
@@ -21,7 +24,9 @@ namespace ColorVictorine
 
         void Init()
         {
-            game = new GameLogic(panel);
+            set_cli_size += size => { ClientSize = size; CenterToScreen(); };
+            game = new GameLogic(panel, set_cli_size);
+
             Text = "Изучаем цвета веместе!";
             StartPosition = FormStartPosition.CenterScreen;
             ClientSize = game.client_size;
