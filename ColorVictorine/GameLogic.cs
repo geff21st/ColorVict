@@ -56,9 +56,9 @@ namespace ColorVictorine
             CreateField();
         }
 
-        public void ReloadField(int ans_num)
+        public void ReloadField(int ans_num, bool k = true)
         {
-            this.ans_num = ans_num;
+            if (k) this.ans_num = ans_num;
             DisposeAns();
             CreateAnsLabels();
         }
@@ -131,7 +131,7 @@ namespace ColorVictorine
             //}
             //else
             {
-                ReloadField(ans_num);
+                ReloadField(ans_num, false);
                 SetAnsLabels(true, ans_type);
                 PlaceAnsLabels(ans_start);
             }
