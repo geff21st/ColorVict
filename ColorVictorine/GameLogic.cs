@@ -514,6 +514,7 @@ namespace ColorVictorine
         {
             max_err = err;
             mode = "ошибки";
+            LoadLevel();
         }
 
         public void SetRandLevel()
