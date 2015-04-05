@@ -59,13 +59,13 @@
             this.level4MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.level5MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.level6MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.level7MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.randLevelMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.easyHardMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.twoAnsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fourAnsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sixAnsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.level7MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -86,12 +86,11 @@
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(668, 363);
             this.panel.TabIndex = 0;
-            this.panel.Click += new System.EventHandler(this.panel_Click);
             this.panel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_MouseDown);
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(327, 30);
+            this.label3.Location = new System.Drawing.Point(327, 58);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(136, 14);
             this.label3.TabIndex = 7;
@@ -355,6 +354,14 @@
             this.level6MenuItem.Text = "Уровень 6";
             this.level6MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
             // 
+            // level7MenuItem
+            // 
+            this.level7MenuItem.Name = "level7MenuItem";
+            this.level7MenuItem.Size = new System.Drawing.Size(186, 22);
+            this.level7MenuItem.Tag = "7";
+            this.level7MenuItem.Text = "Уровень 7";
+            this.level7MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
             // randLevelMenuItem
             // 
             this.randLevelMenuItem.Name = "randLevelMenuItem";
@@ -374,7 +381,7 @@
             // twoAnsMenuItem
             // 
             this.twoAnsMenuItem.Name = "twoAnsMenuItem";
-            this.twoAnsMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.twoAnsMenuItem.Size = new System.Drawing.Size(140, 22);
             this.twoAnsMenuItem.Tag = "2";
             this.twoAnsMenuItem.Text = "2 варианта";
             this.twoAnsMenuItem.Click += new System.EventHandler(this.ansNumMenuItem_Click);
@@ -382,7 +389,7 @@
             // fourAnsMenuItem
             // 
             this.fourAnsMenuItem.Name = "fourAnsMenuItem";
-            this.fourAnsMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fourAnsMenuItem.Size = new System.Drawing.Size(140, 22);
             this.fourAnsMenuItem.Tag = "4";
             this.fourAnsMenuItem.Text = "4 варианта";
             this.fourAnsMenuItem.Click += new System.EventHandler(this.ansNumMenuItem_Click);
@@ -390,7 +397,7 @@
             // sixAnsMenuItem
             // 
             this.sixAnsMenuItem.Name = "sixAnsMenuItem";
-            this.sixAnsMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sixAnsMenuItem.Size = new System.Drawing.Size(140, 22);
             this.sixAnsMenuItem.Tag = "6";
             this.sixAnsMenuItem.Text = "6 вариантов";
             this.sixAnsMenuItem.Click += new System.EventHandler(this.ansNumMenuItem_Click);
@@ -400,14 +407,6 @@
             this.helpMenuItem.Name = "helpMenuItem";
             this.helpMenuItem.Size = new System.Drawing.Size(65, 20);
             this.helpMenuItem.Text = "Справка";
-            // 
-            // level7MenuItem
-            // 
-            this.level7MenuItem.Name = "level7MenuItem";
-            this.level7MenuItem.Size = new System.Drawing.Size(186, 22);
-            this.level7MenuItem.Tag = "7";
-            this.level7MenuItem.Text = "Уровень 7";
-            this.level7MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
             // 
             // MainForm
             // 

@@ -12,32 +12,33 @@ namespace ColorVictorine
     {
         private   Control   panel;
         public    GameData  data;
-        public    Color     qlabel_color  = Color.FromArgb(80, 80, 80);
-        public    Color     txt_color     = Color.FromArgb(60, 60, 60);
+        public    Color     qlabel_color  =   Color.FromArgb(80, 80, 80);
+        public    Color     txt_color     =   Color.FromArgb(60, 60, 60);
 
         public    Label     stat_label;   
         public    Label     quest_label;
         public    Label     quest_color;
         public    Label[]   ans_labels;
 
-        private   Size      ans_size      = new Size(400, 120);
-        private   Size      qcolor_size   = new Size(200, 90);
-        public    Size      client_size   { get; protected set; }
-        private   Point     ans_start;
-
-        private   static    Random r      = new Random();
-
-        public    int       true_ans      = -1;
-        public    int       true_lbl      = -1;
-        
-        public    int       ans_num       { get;           set; }
-        public    int       yesno_num     = 2;
-        public    int       ans_type      { get; protected set; }
-        public    int       quest_type    { get; private   set; }
-        private   int       level = 1;
-        private   int       columns       = 2;
-        private   int       space         = 14;
-        private   int       border        = 24;
+        private   Size      ans_size      =   new Size(400, 120);
+        private   Size      qcolor_size   =   new Size(200, 90);
+        public    Size      client_size   {   get; protected set; }
+        private   Point     ans_start;        
+                                              
+        private   static    Random r      =   new Random();
+                                              
+        public    int       true_ans      =   -1;
+        public    int       true_lbl      =   -1;
+                                              
+        private   int       max_ans_num   =   6;
+        public    int       ans_num       {   get;           set; }
+        public readonly int yesno_num     =   2;
+        public    int       ans_type      {   get; protected set; }
+        public    int       quest_type    {   get; private   set; }
+        private   int       level = 1;        
+        private   int       columns       =   2;
+        private   int       space         =   14;
+        private   int       border        =   24;
 
 
         public GameField(Control panel, int ans_num)//, GameData game_data)
@@ -60,7 +61,7 @@ namespace ColorVictorine
         public void ReloadField(int ans_num)
         {
             this.ans_num = ans_num;
-            DisposeAns();
+            //DisposeAns();
             CreateAnsLabels();
         }
 
@@ -125,9 +126,11 @@ namespace ColorVictorine
             if (ans_type == 3)
             {
                 PlaceAnsLabes(new Point(ans_start.X, ans_start.Y + ans_size.Height + space * 2));
+                ShowAns(yesno_num);
             }
             else
             {
+                ShowAns(ans_num);
                 PlaceAnsLabes(ans_start);
             }
         }
@@ -161,6 +164,8 @@ namespace ColorVictorine
             }
             
         }
+
+
         void SetAnsLabels(int type = 0)
         {
             int ans;
@@ -319,15 +324,25 @@ namespace ColorVictorine
                              qcolor_size.Height);
         }
 
+        void ShowAns(int ans_num)
+        {
+            for (int i = 0; i < max_ans_num; i++)
+            {
+                ans_labels[i].Visible = i < ans_num ? true : false;
+            }
+        }
+
         private void CreateAnsLabels()
         {
-            ans_labels = new Label[ans_num];
+            ans_labels = new Label[max_ans_num];
             for (int i = 0; i < ans_num; i++)
             {
                 CreateAnsLabel(i);
             }
 
             PlaceAnsLabes(ans_start);
+
+            ShowAns(ans_num);
         }
         
         void PlaceAnsLabes(Point ans_start)

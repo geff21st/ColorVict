@@ -30,11 +30,6 @@ namespace ColorVictorine
             MinimizeBox = false;
         }
 
-        private void panel_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void panel_MouseDown(object sender, MouseEventArgs e)
         {
             game.LoadLevel();
