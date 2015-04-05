@@ -367,6 +367,7 @@
             this.randLevelMenuItem.Name = "randLevelMenuItem";
             this.randLevelMenuItem.Size = new System.Drawing.Size(186, 22);
             this.randLevelMenuItem.Text = "Случайный уровень";
+            this.randLevelMenuItem.Click += new System.EventHandler(this.randLevelMenuItem_Click);
             // 
             // easyHardMenuItem
             // 

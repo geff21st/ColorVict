@@ -44,9 +44,9 @@ namespace ColorVictorine
         {
             var item = (ToolStripMenuItem) sender;
             game.SetAnsNum(int.Parse(item.Tag.ToString()));
-            ClientSize = game.client_size;
-            CenterToScreen();
-            game.LoadLevel();
+            //ClientSize = game.client_size;
+            //CenterToScreen();
+            //game.LoadLevel();
         }
 
         private void levelMenuItem_Click(object sender, EventArgs e)
@@ -59,5 +59,10 @@ namespace ColorVictorine
         {
             game.NewGame();
             game.SetLevel(1);        }
+
+        private void randLevelMenuItem_Click(object sender, EventArgs e)
+        {
+            game.SetRandLevel();
+        }
     }
 }

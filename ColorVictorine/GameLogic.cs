@@ -21,12 +21,12 @@ namespace ColorVictorine
         public    Label     quest_color;
         public    Label[]   ans_labels;
 
-        private   Size      ans_size      =   new Size(400, 120);
+        private   Size      ans_size      =   new Size(420, 130);
         private   Size      qcolor_size   =   new Size(220, 90);
         public    Size      client_size   {   get; protected set; }
         private   Point     ans_start;        
                                               
-        private   static    Random r      =   new Random();
+        public    static    Random r      =   new Random();
                                               
         public    int       seven_text    =   -1;
         public    int       seven_color   =   -1;
@@ -65,8 +65,11 @@ namespace ColorVictorine
         public void ReloadField(int ans_num)
         {
             this.ans_num = ans_num;
-            //DisposeAns();
+            DisposeAns();
             CreateAnsLabels();
+            PlaceAnsLabes(ans_start);
+            ShowAns(ans_num);
+            //LoadField(level);
         }
 
         void DisposeAns()
@@ -366,14 +369,14 @@ namespace ColorVictorine
         {
             for (int i = 0; i < max_ans_num; i++)
             {
-                ans_labels[i].Visible = i < ans_num ? true : false;
+                ans_labels[i].Visible = i < ans_num;// ? true : false;
             }
         }
 
         private void CreateAnsLabels()
         {
             ans_labels = new Label[max_ans_num];
-            for (int i = 0; i < ans_num; i++)
+            for (int i = 0; i < max_ans_num; i++)
             {
                 CreateAnsLabel(i);
             }
@@ -418,11 +421,14 @@ namespace ColorVictorine
         private  Label[]    ans_labels;
                             
         public   Control    panel;
-        private  int        ans_num  = 6;
-        private  int        level    = 1;
+        private  int        ans_num     = 6;
+        private  int        level       = 1;
+        private  int        max_level   = 7;
 
         private  int        true_clicks = 0;
         private  int        wrng_clicks = 0;
+
+        private  bool       rnd_level = false;
 
         public GameLogic(Control panel, DelegateSetSize set_cli_size)
         {
@@ -441,13 +447,22 @@ namespace ColorVictorine
             SetEvents();
         }
 
-        void SetEvents()
+        void SetEvents(bool k = true)
         {
+            if (k)
             for (int i = 0; i < field.ans_num; i++)
             {
                 field.ans_labels[i].MouseDown  += ans_MouseDown;
                 field.ans_labels[i].MouseMove  += ans_MouseMove;
                 field.ans_labels[i].MouseLeave += ans_MouseLeave;
+            }
+
+            if (k) return;
+            for (int i = 0; i < field.ans_num; i++)
+            {
+                field.ans_labels[i].MouseDown  -= ans_MouseDown;
+                field.ans_labels[i].MouseMove  -= ans_MouseMove;
+                field.ans_labels[i].MouseLeave -= ans_MouseLeave;
             }
         }
 
@@ -459,6 +474,8 @@ namespace ColorVictorine
 
         public void LoadLevel(bool next = false)
         {
+            if (rnd_level) level = GameField.r.Next(1, max_level + 1);
+
             field.LoadField(level);
 
             field.stat_label.Text = "[ Верно: " + true_clicks.ToString().PadLeft(3) + " | " +
@@ -470,10 +487,18 @@ namespace ColorVictorine
             ans_num = i;
             field.ReloadField(ans_num);
             SetEvents();
-            client_size = field.ClientSize();
+            LoadLevel();
+            set_cli_size(field.ClientSize(field.ans_type));
         }
+
+        public void SetRandLevel()
+        {
+            rnd_level = true;
+        }
+
         public void SetLevel(int i)
         {
+            rnd_level = false;
             level = i;
             LoadLevel(true);
         }
