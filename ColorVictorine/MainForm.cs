@@ -38,8 +38,8 @@ namespace ColorVictorine
         private void panel_MouseDown(object sender, MouseEventArgs e)
         {
             //game.LoadLevel();
-            timer.Enabled = !timer.Enabled;
-            Text = timer.Enabled.ToString();
+            game.StartTimer();
+            //Text = timer.Enabled.ToString();
         }
 
         private void ansNumMenuItem_Click(object sender, EventArgs e)
@@ -71,7 +71,7 @@ namespace ColorVictorine
         private void ErrMenuItem_Click(object sender, EventArgs e)
         {
             var item = (ToolStripMenuItem)sender;
-            game.SetErrMode(int.Parse(item.Tag.ToString()));
+            game.SetMode("ошибки", int.Parse(item.Tag.ToString()));
         }
 
         private void exitMenuItem_Click(object sender, EventArgs e)
@@ -82,6 +82,17 @@ namespace ColorVictorine
         private void panel_Paint(object sender, PaintEventArgs e)
         {
             
+        }
+
+        private void endlessMenuItem_Click(object sender, EventArgs e)
+        {
+            game.SetMode("бесконечный", 0);
+        }
+
+        private void XsecMenuItem_Click(object sender, EventArgs e)
+        {
+            var item = (ToolStripMenuItem)sender;
+            game.SetMode("на время", int.Parse(item.Tag.ToString()));
         }
     }
 }

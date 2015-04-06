@@ -50,10 +50,11 @@
             this.fiveErrMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tenErrMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forTimeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.секToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.минToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.минToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.минToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.sec30MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.min1MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.min2MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.min5MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.min10MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.levelMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.level1MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.level2MenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,6 +70,7 @@
             this.sixAnsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.sec10MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -230,8 +232,9 @@
             // endlessMenuItem
             // 
             this.endlessMenuItem.Name = "endlessMenuItem";
-            this.endlessMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.endlessMenuItem.Size = new System.Drawing.Size(152, 22);
             this.endlessMenuItem.Text = "Бесконечный";
+            this.endlessMenuItem.Click += new System.EventHandler(this.endlessMenuItem_Click);
             // 
             // toXerrMenuItem
             // 
@@ -241,7 +244,7 @@
             this.fiveErrMenuItem,
             this.tenErrMenuItem});
             this.toXerrMenuItem.Name = "toXerrMenuItem";
-            this.toXerrMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.toXerrMenuItem.Size = new System.Drawing.Size(152, 22);
             this.toXerrMenuItem.Text = "До Х ошибок";
             // 
             // twoErrMenuItem
@@ -279,37 +282,55 @@
             // forTimeMenuItem
             // 
             this.forTimeMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.секToolStripMenuItem,
-            this.минToolStripMenuItem,
-            this.минToolStripMenuItem1,
-            this.минToolStripMenuItem2});
+            this.sec10MenuItem,
+            this.sec30MenuItem,
+            this.min2MenuItem,
+            this.min1MenuItem,
+            this.min5MenuItem,
+            this.min10MenuItem});
             this.forTimeMenuItem.Name = "forTimeMenuItem";
-            this.forTimeMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.forTimeMenuItem.Size = new System.Drawing.Size(152, 22);
             this.forTimeMenuItem.Text = "На время";
             // 
-            // секToolStripMenuItem
+            // sec30MenuItem
             // 
-            this.секToolStripMenuItem.Name = "секToolStripMenuItem";
-            this.секToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
-            this.секToolStripMenuItem.Text = "30 сек.";
+            this.sec30MenuItem.Name = "sec30MenuItem";
+            this.sec30MenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sec30MenuItem.Tag = "30";
+            this.sec30MenuItem.Text = "30 сек.";
+            this.sec30MenuItem.Click += new System.EventHandler(this.XsecMenuItem_Click);
             // 
-            // минToolStripMenuItem
+            // min1MenuItem
             // 
-            this.минToolStripMenuItem.Name = "минToolStripMenuItem";
-            this.минToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
-            this.минToolStripMenuItem.Text = "1 мин.";
+            this.min1MenuItem.Name = "min1MenuItem";
+            this.min1MenuItem.Size = new System.Drawing.Size(152, 22);
+            this.min1MenuItem.Tag = "60";
+            this.min1MenuItem.Text = "1 мин.";
+            this.min1MenuItem.Click += new System.EventHandler(this.XsecMenuItem_Click);
             // 
-            // минToolStripMenuItem1
+            // min2MenuItem
             // 
-            this.минToolStripMenuItem1.Name = "минToolStripMenuItem1";
-            this.минToolStripMenuItem1.Size = new System.Drawing.Size(110, 22);
-            this.минToolStripMenuItem1.Text = "2 мин.";
+            this.min2MenuItem.Name = "min2MenuItem";
+            this.min2MenuItem.Size = new System.Drawing.Size(152, 22);
+            this.min2MenuItem.Tag = "120";
+            this.min2MenuItem.Text = "2 мин.";
+            this.min2MenuItem.Click += new System.EventHandler(this.XsecMenuItem_Click);
             // 
-            // минToolStripMenuItem2
+            // min5MenuItem
             // 
-            this.минToolStripMenuItem2.Name = "минToolStripMenuItem2";
-            this.минToolStripMenuItem2.Size = new System.Drawing.Size(110, 22);
-            this.минToolStripMenuItem2.Text = "5 мин.";
+            this.min5MenuItem.Name = "min5MenuItem";
+            this.min5MenuItem.Size = new System.Drawing.Size(152, 22);
+            this.min5MenuItem.Tag = "300";
+            this.min5MenuItem.Text = "5 мин.";
+            this.min5MenuItem.Click += new System.EventHandler(this.XsecMenuItem_Click);
+            // 
+            // min10MenuItem
+            // 
+            this.min10MenuItem.Name = "min10MenuItem";
+            this.min10MenuItem.Size = new System.Drawing.Size(152, 22);
+            this.min10MenuItem.Tag = "600";
+            this.min10MenuItem.Text = "10 мин.";
+            this.min10MenuItem.Click += new System.EventHandler(this.XsecMenuItem_Click);
             // 
             // levelMenuItem
             // 
@@ -429,9 +450,13 @@
             this.helpMenuItem.Size = new System.Drawing.Size(65, 20);
             this.helpMenuItem.Text = "Справка";
             // 
-            // timer
+            // sec10MenuItem
             // 
-            this.timer.Interval = 1;
+            this.sec10MenuItem.Name = "sec10MenuItem";
+            this.sec10MenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sec10MenuItem.Tag = "10";
+            this.sec10MenuItem.Text = "10 сек.";
+            this.sec10MenuItem.Click += new System.EventHandler(this.XsecMenuItem_Click);
             // 
             // MainForm
             // 
@@ -485,13 +510,15 @@
         private System.Windows.Forms.ToolStripMenuItem threeErrMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fiveErrMenuItem;
         private System.Windows.Forms.ToolStripMenuItem forTimeMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem секToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem минToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem минToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem минToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem sec30MenuItem;
+        private System.Windows.Forms.ToolStripMenuItem min1MenuItem;
+        private System.Windows.Forms.ToolStripMenuItem min2MenuItem;
+        private System.Windows.Forms.ToolStripMenuItem min5MenuItem;
         private System.Windows.Forms.ToolStripMenuItem level7MenuItem;
         private System.Windows.Forms.ToolStripMenuItem tenErrMenuItem;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.ToolStripMenuItem min10MenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sec10MenuItem;
     }
 }
 

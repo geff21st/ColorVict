@@ -451,6 +451,9 @@ namespace ColorVictorine
         private  GameField  field;
 
         private  Timer      timer;
+        private  int        time;
+        private  DateTime   start_time;
+        private  int        max_var;
 
         public   Size       client_size;
         private  Label[]    ans_labels;
@@ -462,7 +465,7 @@ namespace ColorVictorine
         private  int        level       =    1;
         private  int        max_level   =    7;
 
-        private  int        time;
+        
 
         private  int        true_clicks =    0;
         private  int        wrng_clicks =    0;
@@ -504,20 +507,28 @@ namespace ColorVictorine
                 field.ans_labels[i].MouseMove  -= ans_MouseMove;
                 field.ans_labels[i].MouseLeave -= ans_MouseLeave;
             }
-
-            
         }
 
         void timer_Tick(object sender, EventArgs e)
         {
-            time++;
-            field.info_label.Text = time.ToString();
+            time = max_var - (int)TimeSpan.FromTicks(DateTime.Now.Ticks - start_time.Ticks).TotalSeconds;
+            SetInfoLabel();
+            
+            if (time <= 0)
+            {
+                timer.Stop();
+                EndGame();
+                time = max_var;
+            } 
+            
+            
         }
 
         public void NewGame()
         {
             wrng_clicks = 0;
             true_clicks = 0;
+            LoadLevel();
         }
 
         public void LoadLevel(bool next = false)
@@ -529,8 +540,38 @@ namespace ColorVictorine
             field.stat_label.Text = "[ Верно: " + 
                                     true_clicks.ToString().PadLeft(3) + " | " +
                                     "Ошибок: "  + wrng_clicks.ToString().PadLeft(3) + " ]";
+
+            SetInfoLabel();
         }
 
+        void SetInfoLabel()
+        {
+            field.info_label.Text = "Режим игры: [ " + mode;
+
+            switch (mode)
+            {
+                case "на время":
+                    field.info_label.Text += " | " + SecondsToTime();
+                    break;
+                case "ошибки":
+                    field.info_label.Text += " | " + max_var;
+                    break;
+
+            }
+
+            field.info_label.Text += " ]";
+        }
+
+        string SecondsToTime()
+        {
+            return (time/60).ToString("D2") + " : " + (time%60).ToString("D2");
+        }
+
+        public void StartTimer()
+        {
+            start_time = DateTime.Now;
+            timer.Enabled = !timer.Enabled;
+        }
         public void SetAnsNum(int i)
         {
             ans_num = i;
@@ -539,19 +580,29 @@ namespace ColorVictorine
             LoadLevel();
             set_cli_size(field.ClientSize(field.ans_type));
         }
-
-        public void SetErrMode(int err)
+        public void SetMode(string mode, int a)
         {
-            max_err = err;
-            mode = "ошибки";
+            //switch (mode)
+            //{
+            //    case "бесконечный":
+            //        break;
+            //    case "ошибки":
+                    
+            //        break;
+            //    case "на время":
+            //        max_time = a;
+            //        break;
+            //}
+            start_time = DateTime.Now;
+            time = a;
+            max_var = a;
+            this.mode = mode;
             LoadLevel();
         }
-
         public void SetRandLevel()
         {
             rnd_level = true;
         }
-
         public void SetLevel(int i)
         {
             rnd_level = false;
@@ -595,6 +646,9 @@ namespace ColorVictorine
 
             PerformeAct((int)lbl.Tag == field.true_ans);
             LoadLevel(false);
+
+            if (mode == "на время" && !timer.Enabled) 
+                timer.Start();
         }
 
         void PerformeAct(bool k)
@@ -605,14 +659,14 @@ namespace ColorVictorine
             switch (mode)
             {
                 case "ошибки":
-                    if (wrng_clicks >= max_err) EndGame();
+                    if (wrng_clicks >= max_var) EndGame();
                     break;
             }
         }
-
         void EndGame()
         {
-            MessageBox.Show("Игра окончена!");
+            MessageBox.Show("Игра окончена!\n" +
+                            "[ " + true_clicks + " ] правильных ответов.");
             NewGame();
         }
     }
