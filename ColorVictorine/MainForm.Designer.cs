@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -67,6 +68,7 @@
             this.fourAnsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sixAnsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.panel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -198,19 +200,19 @@
             // newGameMenuItem
             // 
             this.newGameMenuItem.Name = "newGameMenuItem";
-            this.newGameMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newGameMenuItem.Size = new System.Drawing.Size(136, 22);
             this.newGameMenuItem.Text = "Новая игра";
             this.newGameMenuItem.Click += new System.EventHandler(this.newGameMenuItem_Click);
             // 
             // divider
             // 
             this.divider.Name = "divider";
-            this.divider.Size = new System.Drawing.Size(149, 6);
+            this.divider.Size = new System.Drawing.Size(133, 6);
             // 
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitMenuItem.Size = new System.Drawing.Size(136, 22);
             this.exitMenuItem.Text = "Выход";
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
             // 
@@ -227,7 +229,7 @@
             // endlessMenuItem
             // 
             this.endlessMenuItem.Name = "endlessMenuItem";
-            this.endlessMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.endlessMenuItem.Size = new System.Drawing.Size(149, 22);
             this.endlessMenuItem.Text = "Бесконечный";
             // 
             // toXerrMenuItem
@@ -238,13 +240,13 @@
             this.fiveErrMenuItem,
             this.tenErrMenuItem});
             this.toXerrMenuItem.Name = "toXerrMenuItem";
-            this.toXerrMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.toXerrMenuItem.Size = new System.Drawing.Size(149, 22);
             this.toXerrMenuItem.Text = "До Х ошибок";
             // 
             // twoErrMenuItem
             // 
             this.twoErrMenuItem.Name = "twoErrMenuItem";
-            this.twoErrMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.twoErrMenuItem.Size = new System.Drawing.Size(134, 22);
             this.twoErrMenuItem.Tag = "2";
             this.twoErrMenuItem.Text = "2 ошибки";
             this.twoErrMenuItem.Click += new System.EventHandler(this.ErrMenuItem_Click);
@@ -252,7 +254,7 @@
             // threeErrMenuItem
             // 
             this.threeErrMenuItem.Name = "threeErrMenuItem";
-            this.threeErrMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.threeErrMenuItem.Size = new System.Drawing.Size(134, 22);
             this.threeErrMenuItem.Tag = "3";
             this.threeErrMenuItem.Text = "3 ошибки";
             this.threeErrMenuItem.Click += new System.EventHandler(this.ErrMenuItem_Click);
@@ -260,7 +262,7 @@
             // fiveErrMenuItem
             // 
             this.fiveErrMenuItem.Name = "fiveErrMenuItem";
-            this.fiveErrMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fiveErrMenuItem.Size = new System.Drawing.Size(134, 22);
             this.fiveErrMenuItem.Tag = "5";
             this.fiveErrMenuItem.Text = "5 ошибок";
             this.fiveErrMenuItem.Click += new System.EventHandler(this.ErrMenuItem_Click);
@@ -268,7 +270,7 @@
             // tenErrMenuItem
             // 
             this.tenErrMenuItem.Name = "tenErrMenuItem";
-            this.tenErrMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.tenErrMenuItem.Size = new System.Drawing.Size(134, 22);
             this.tenErrMenuItem.Tag = "10";
             this.tenErrMenuItem.Text = "10 ошибок";
             this.tenErrMenuItem.Click += new System.EventHandler(this.ErrMenuItem_Click);
@@ -281,7 +283,7 @@
             this.минToolStripMenuItem1,
             this.минToolStripMenuItem2});
             this.forTimeMenuItem.Name = "forTimeMenuItem";
-            this.forTimeMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.forTimeMenuItem.Size = new System.Drawing.Size(149, 22);
             this.forTimeMenuItem.Text = "На время";
             // 
             // секToolStripMenuItem
@@ -484,6 +486,7 @@
         private System.Windows.Forms.ToolStripMenuItem минToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem level7MenuItem;
         private System.Windows.Forms.ToolStripMenuItem tenErrMenuItem;
+        private System.Windows.Forms.Timer timer;
     }
 }
 

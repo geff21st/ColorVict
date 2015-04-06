@@ -16,6 +16,7 @@ namespace ColorVictorine
         public    Color     qlabel_color  =   Color.FromArgb(80, 80, 80);
         public    Color     txt_color     =   Color.FromArgb(60, 60, 60);
 
+        public    Label     info_label;   
         public    Label     stat_label;   
         public    Label     quest_label;
         public    Label     quest_color;
@@ -328,20 +329,36 @@ namespace ColorVictorine
             //статистика
             stat_label = new Label();
             stat_label.Size = new Size(
-                    client_size.Width - border * 2,
+                    ans_size.Width,
                     border*2
                 );
             stat_label.Text = "статистика";
+            //stat_label.Location = 
             stat_label.Location = new Point(
-                    border,
+                    border + ans_size.Width + space,
                     quest_label.Location.Y + quest_label.Height
                 );
-            stat_label.BackColor = panel.BackColor;
+            stat_label.BackColor = data.bg_clr;
             stat_label.ForeColor = txt_color;
             stat_label.Font = new Font("Consolas", 14F, FontStyle.Regular, GraphicsUnit.Point, 204);
             stat_label.TextAlign = ContentAlignment.MiddleRight;
-            stat_label.BorderStyle = BorderStyle.None;
+            stat_label.BorderStyle = BorderStyle.FixedSingle;
             panel.Controls.Add(stat_label);
+
+            //игровая информация
+            info_label = new Label();
+            info_label.Text = "игровая информация";
+            info_label.Location = new Point(
+                    border,
+                    quest_label.Location.Y + quest_label.Height
+                );
+            info_label.Size         = stat_label.Size;
+            info_label.Font         = stat_label.Font;
+            info_label.BackColor    = stat_label.BackColor;
+            info_label.ForeColor    = stat_label.ForeColor;
+            info_label.BorderStyle  = stat_label.BorderStyle;
+            info_label.TextAlign    = ContentAlignment.MiddleLeft;
+            panel.Controls.Add(info_label);
         }
 
         Point AnsStartPoint(int type)
@@ -432,7 +449,9 @@ namespace ColorVictorine
         private DelegateSetSize set_cli_size;
 
         private  GameField  field;
-                            
+
+        private  Timer      timer;
+
         public   Size       client_size;
         private  Label[]    ans_labels;
 
@@ -448,10 +467,11 @@ namespace ColorVictorine
 
         private  bool       rnd_level = false;
 
-        public GameLogic(Control panel, DelegateSetSize set_cli_size)
+        public GameLogic(Control panel, DelegateSetSize set_cli_size, Timer timer)
         {
             this.panel = panel;
             this.set_cli_size = set_cli_size;
+            this.timer = timer;
             Init();
         }
 
@@ -495,8 +515,8 @@ namespace ColorVictorine
             if (rnd_level) level = GameField.r.Next(1, max_level + 1);
 
             field.LoadField(level);
-
-            field.stat_label.Text = "Режим: [" + mode + "]   [ Верно: " + 
+            //Режим: [" + mode + "]   
+            field.stat_label.Text = "[ Верно: " + 
                                     true_clicks.ToString().PadLeft(3) + " | " +
                                     "Ошибок: "  + wrng_clicks.ToString().PadLeft(3) + " ]";
         }
