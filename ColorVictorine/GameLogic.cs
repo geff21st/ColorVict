@@ -517,8 +517,8 @@ namespace ColorVictorine
             if (time <= 0)
             {
                 timer.Stop();
-                EndGame();
                 time = max_var;
+                EndGame();
             } 
             
             
@@ -570,7 +570,7 @@ namespace ColorVictorine
         public void StartTimer()
         {
             start_time = DateTime.Now;
-            timer.Enabled = !timer.Enabled;
+            timer.Enabled = true;
         }
         public void SetAnsNum(int i)
         {
@@ -593,9 +593,8 @@ namespace ColorVictorine
             //        max_time = a;
             //        break;
             //}
-            start_time = DateTime.Now;
-            time = a;
-            max_var = a;
+            
+            max_var = time = a;
             this.mode = mode;
             LoadLevel();
         }
@@ -648,7 +647,7 @@ namespace ColorVictorine
             LoadLevel(false);
 
             if (mode == "на время" && !timer.Enabled) 
-                timer.Start();
+                StartTimer();
         }
 
         void PerformeAct(bool k)
