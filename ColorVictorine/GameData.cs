@@ -12,6 +12,7 @@ namespace ColorVictorine
 {
     class GameData
     {
+        public Font reg_font   = new Font("Calibri", 26F, FontStyle.Bold, GraphicsUnit.Point, 204);
         public Font big_font   = new Font("Calibri", 28F, FontStyle.Bold, GraphicsUnit.Point, 204);
         public Font small_font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 204);
 
@@ -80,7 +81,7 @@ namespace ColorVictorine
         public void PlaySound(int i)
         {
             waveOutDevice.Stop();
-            //waveOutDevice.Dispose();
+            waveOutDevice.Dispose();
             waveOutDevice = new WaveOut();
             audioFileReader = new AudioFileReader(sounds[i]);
             waveOutDevice.Init(audioFileReader);

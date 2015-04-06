@@ -235,7 +235,7 @@ namespace ColorVictorine
                     break;
                 case 2:
                     quest_color.Click      +=   quest_color_MouseDown;
-                    quest_color.BackColor   =   qlabel_color;
+                    quest_color.BackColor   =   data.colors[RndNum(data.N,-1)];
                     quest_color.ForeColor   =   Color.White;
                     quest_color.Font        =   data.small_font;
                     quest_color.Text        =   "прослушать";
@@ -308,7 +308,7 @@ namespace ColorVictorine
                                     ans_start.X, ans_start.X + 20);
             quest_label.BackColor = data.bg_clr;
             quest_label.ForeColor = txt_color;
-            quest_label.Font = data.big_font;
+            quest_label.Font = data.reg_font;
             quest_label.TextAlign = ContentAlignment.MiddleCenter;
             quest_label.BorderStyle = BorderStyle.None;
             panel.Controls.Add(quest_label);
@@ -569,7 +569,7 @@ namespace ColorVictorine
 
         void PerformeAct(bool k)
         {
-            true_clicks = k  ? true_clicks + 1 : true_clicks;
+            true_clicks =  k ? true_clicks + 1 : true_clicks;
             wrng_clicks = !k ? wrng_clicks + 1 : wrng_clicks;
 
             switch (mode)
