@@ -89,6 +89,7 @@
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(668, 363);
             this.panel.TabIndex = 0;
+            this.panel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             this.panel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_MouseDown);
             // 
             // label3
@@ -427,6 +428,10 @@
             this.helpMenuItem.Name = "helpMenuItem";
             this.helpMenuItem.Size = new System.Drawing.Size(65, 20);
             this.helpMenuItem.Text = "Справка";
+            // 
+            // timer
+            // 
+            this.timer.Interval = 1;
             // 
             // MainForm
             // 

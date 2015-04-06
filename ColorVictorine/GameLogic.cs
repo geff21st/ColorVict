@@ -338,11 +338,11 @@ namespace ColorVictorine
                     border + ans_size.Width + space,
                     quest_label.Location.Y + quest_label.Height
                 );
-            stat_label.BackColor = data.bg_clr;
+            stat_label.BackColor = panel.BackColor;
             stat_label.ForeColor = txt_color;
             stat_label.Font = new Font("Consolas", 14F, FontStyle.Regular, GraphicsUnit.Point, 204);
             stat_label.TextAlign = ContentAlignment.MiddleRight;
-            stat_label.BorderStyle = BorderStyle.FixedSingle;
+            stat_label.BorderStyle = BorderStyle.None;
             panel.Controls.Add(stat_label);
 
             //игровая информация
@@ -462,6 +462,8 @@ namespace ColorVictorine
         private  int        level       =    1;
         private  int        max_level   =    7;
 
+        private  int        time;
+
         private  int        true_clicks =    0;
         private  int        wrng_clicks =    0;
 
@@ -472,6 +474,7 @@ namespace ColorVictorine
             this.panel = panel;
             this.set_cli_size = set_cli_size;
             this.timer = timer;
+            
             Init();
         }
 
@@ -479,10 +482,9 @@ namespace ColorVictorine
         {
             field = new GameField(panel, ans_num, set_cli_size);
             client_size = field.client_size;
-            
             LoadLevel(true);
-
             SetEvents();
+            timer.Tick += timer_Tick;
         }
 
         void SetEvents(bool k = true)
@@ -502,6 +504,14 @@ namespace ColorVictorine
                 field.ans_labels[i].MouseMove  -= ans_MouseMove;
                 field.ans_labels[i].MouseLeave -= ans_MouseLeave;
             }
+
+            
+        }
+
+        void timer_Tick(object sender, EventArgs e)
+        {
+            time++;
+            field.info_label.Text = time.ToString();
         }
 
         public void NewGame()

@@ -37,7 +37,9 @@ namespace ColorVictorine
 
         private void panel_MouseDown(object sender, MouseEventArgs e)
         {
-            game.LoadLevel();
+            //game.LoadLevel();
+            timer.Enabled = !timer.Enabled;
+            Text = timer.Enabled.ToString();
         }
 
         private void ansNumMenuItem_Click(object sender, EventArgs e)
@@ -75,6 +77,11 @@ namespace ColorVictorine
         private void exitMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void panel_Paint(object sender, PaintEventArgs e)
+        {
+            
         }
     }
 }
