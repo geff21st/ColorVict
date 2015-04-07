@@ -27,7 +27,7 @@ namespace ColorVictorine
             set_cli_size += size => { ClientSize = size; CenterToScreen(); };
             game = new GameLogic(panel, set_cli_size, timer);
 
-            Text = "Изучаем цвета веместе! Тут еще и фигуры будут.";
+            Text = "Изучаем цвета веместе! Тут еще и фигуры будут";
             StartPosition = FormStartPosition.CenterScreen;
             ClientSize = game.client_size;
             FormBorderStyle = FormBorderStyle.FixedSingle;

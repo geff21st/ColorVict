@@ -10,7 +10,14 @@ using NAudio.Wave;
  
 namespace ColorVictorine
 {
-    class GameData
+    class FiguresData
+    {
+        public FiguresData()
+        {
+            
+        }
+    }
+    class ColorData
     {
         public Font reg_font   = new Font("Calibri", 26F, FontStyle.Bold, GraphicsUnit.Point, 204);
         public Font big_font   = new Font("Calibri", 28F, FontStyle.Bold, GraphicsUnit.Point, 204);
@@ -33,8 +40,6 @@ namespace ColorVictorine
             "Неверно"
         };
 
-
-        
         public string[] questions =
         {
             "Найди такой же цвет:",
@@ -51,7 +56,7 @@ namespace ColorVictorine
         IWavePlayer waveOutDevice;
         AudioFileReader audioFileReader;
 
-        public GameData()
+        public ColorData()
         {
             Init();
         }

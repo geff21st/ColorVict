@@ -50,27 +50,36 @@
             this.fiveErrMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tenErrMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forTimeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sec10MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sec30MenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.min1MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.min2MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.min1MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.min5MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.min10MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.levelMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.level1MenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.level2MenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.level3MenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.level4MenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.level5MenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.level6MenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.level7MenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.randLevelMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.easyHardMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.twoAnsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fourAnsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sixAnsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.sec10MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.figuresMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.rndAllMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fig1MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rndFigsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fig2MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fig3MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fig4MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.уровень5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rndClrsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.уровень2ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.уровень3ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.уровень4ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.уровень5ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.уровень6ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.уровень7ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -91,8 +100,6 @@
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(668, 363);
             this.panel.TabIndex = 0;
-            this.panel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
-            this.panel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_MouseDown);
             // 
             // label3
             // 
@@ -232,7 +239,7 @@
             // endlessMenuItem
             // 
             this.endlessMenuItem.Name = "endlessMenuItem";
-            this.endlessMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.endlessMenuItem.Size = new System.Drawing.Size(149, 22);
             this.endlessMenuItem.Text = "Бесконечный";
             this.endlessMenuItem.Click += new System.EventHandler(this.endlessMenuItem_Click);
             // 
@@ -244,7 +251,7 @@
             this.fiveErrMenuItem,
             this.tenErrMenuItem});
             this.toXerrMenuItem.Name = "toXerrMenuItem";
-            this.toXerrMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.toXerrMenuItem.Size = new System.Drawing.Size(149, 22);
             this.toXerrMenuItem.Text = "До Х ошибок";
             // 
             // twoErrMenuItem
@@ -289,37 +296,45 @@
             this.min5MenuItem,
             this.min10MenuItem});
             this.forTimeMenuItem.Name = "forTimeMenuItem";
-            this.forTimeMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.forTimeMenuItem.Size = new System.Drawing.Size(149, 22);
             this.forTimeMenuItem.Text = "На время";
+            // 
+            // sec10MenuItem
+            // 
+            this.sec10MenuItem.Name = "sec10MenuItem";
+            this.sec10MenuItem.Size = new System.Drawing.Size(115, 22);
+            this.sec10MenuItem.Tag = "10";
+            this.sec10MenuItem.Text = "10 сек.";
+            this.sec10MenuItem.Click += new System.EventHandler(this.XsecMenuItem_Click);
             // 
             // sec30MenuItem
             // 
             this.sec30MenuItem.Name = "sec30MenuItem";
-            this.sec30MenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sec30MenuItem.Size = new System.Drawing.Size(115, 22);
             this.sec30MenuItem.Tag = "30";
             this.sec30MenuItem.Text = "30 сек.";
             this.sec30MenuItem.Click += new System.EventHandler(this.XsecMenuItem_Click);
             // 
-            // min1MenuItem
-            // 
-            this.min1MenuItem.Name = "min1MenuItem";
-            this.min1MenuItem.Size = new System.Drawing.Size(152, 22);
-            this.min1MenuItem.Tag = "60";
-            this.min1MenuItem.Text = "1 мин.";
-            this.min1MenuItem.Click += new System.EventHandler(this.XsecMenuItem_Click);
-            // 
             // min2MenuItem
             // 
             this.min2MenuItem.Name = "min2MenuItem";
-            this.min2MenuItem.Size = new System.Drawing.Size(152, 22);
+            this.min2MenuItem.Size = new System.Drawing.Size(115, 22);
             this.min2MenuItem.Tag = "120";
             this.min2MenuItem.Text = "2 мин.";
             this.min2MenuItem.Click += new System.EventHandler(this.XsecMenuItem_Click);
             // 
+            // min1MenuItem
+            // 
+            this.min1MenuItem.Name = "min1MenuItem";
+            this.min1MenuItem.Size = new System.Drawing.Size(115, 22);
+            this.min1MenuItem.Tag = "60";
+            this.min1MenuItem.Text = "1 мин.";
+            this.min1MenuItem.Click += new System.EventHandler(this.XsecMenuItem_Click);
+            // 
             // min5MenuItem
             // 
             this.min5MenuItem.Name = "min5MenuItem";
-            this.min5MenuItem.Size = new System.Drawing.Size(152, 22);
+            this.min5MenuItem.Size = new System.Drawing.Size(115, 22);
             this.min5MenuItem.Tag = "300";
             this.min5MenuItem.Text = "5 мин.";
             this.min5MenuItem.Click += new System.EventHandler(this.XsecMenuItem_Click);
@@ -327,7 +342,7 @@
             // min10MenuItem
             // 
             this.min10MenuItem.Name = "min10MenuItem";
-            this.min10MenuItem.Size = new System.Drawing.Size(152, 22);
+            this.min10MenuItem.Size = new System.Drawing.Size(115, 22);
             this.min10MenuItem.Tag = "600";
             this.min10MenuItem.Text = "10 мин.";
             this.min10MenuItem.Click += new System.EventHandler(this.XsecMenuItem_Click);
@@ -335,80 +350,12 @@
             // levelMenuItem
             // 
             this.levelMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.level1MenuItem,
-            this.level2MenuItem,
-            this.level3MenuItem,
-            this.level4MenuItem,
-            this.level5MenuItem,
-            this.level6MenuItem,
-            this.level7MenuItem,
-            this.randLevelMenuItem});
+            this.figuresMenuItem,
+            this.colorsMenuItem,
+            this.rndAllMenuItem});
             this.levelMenuItem.Name = "levelMenuItem";
             this.levelMenuItem.Size = new System.Drawing.Size(65, 20);
             this.levelMenuItem.Text = "Уровень";
-            // 
-            // level1MenuItem
-            // 
-            this.level1MenuItem.Name = "level1MenuItem";
-            this.level1MenuItem.Size = new System.Drawing.Size(186, 22);
-            this.level1MenuItem.Tag = "1";
-            this.level1MenuItem.Text = "Уровень 1";
-            this.level1MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
-            // 
-            // level2MenuItem
-            // 
-            this.level2MenuItem.Name = "level2MenuItem";
-            this.level2MenuItem.Size = new System.Drawing.Size(186, 22);
-            this.level2MenuItem.Tag = "2";
-            this.level2MenuItem.Text = "Уровень 2";
-            this.level2MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
-            // 
-            // level3MenuItem
-            // 
-            this.level3MenuItem.Name = "level3MenuItem";
-            this.level3MenuItem.Size = new System.Drawing.Size(186, 22);
-            this.level3MenuItem.Tag = "3";
-            this.level3MenuItem.Text = "Уровень 3";
-            this.level3MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
-            // 
-            // level4MenuItem
-            // 
-            this.level4MenuItem.Name = "level4MenuItem";
-            this.level4MenuItem.Size = new System.Drawing.Size(186, 22);
-            this.level4MenuItem.Tag = "4";
-            this.level4MenuItem.Text = "Уровень 4";
-            this.level4MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
-            // 
-            // level5MenuItem
-            // 
-            this.level5MenuItem.Name = "level5MenuItem";
-            this.level5MenuItem.Size = new System.Drawing.Size(186, 22);
-            this.level5MenuItem.Tag = "5";
-            this.level5MenuItem.Text = "Уровень 5";
-            this.level5MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
-            // 
-            // level6MenuItem
-            // 
-            this.level6MenuItem.Name = "level6MenuItem";
-            this.level6MenuItem.Size = new System.Drawing.Size(186, 22);
-            this.level6MenuItem.Tag = "6";
-            this.level6MenuItem.Text = "Уровень 6";
-            this.level6MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
-            // 
-            // level7MenuItem
-            // 
-            this.level7MenuItem.Name = "level7MenuItem";
-            this.level7MenuItem.Size = new System.Drawing.Size(186, 22);
-            this.level7MenuItem.Tag = "7";
-            this.level7MenuItem.Text = "Уровень 7";
-            this.level7MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
-            // 
-            // randLevelMenuItem
-            // 
-            this.randLevelMenuItem.Name = "randLevelMenuItem";
-            this.randLevelMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.randLevelMenuItem.Text = "Случайный уровень";
-            this.randLevelMenuItem.Click += new System.EventHandler(this.randLevelMenuItem_Click);
             // 
             // easyHardMenuItem
             // 
@@ -450,13 +397,153 @@
             this.helpMenuItem.Size = new System.Drawing.Size(65, 20);
             this.helpMenuItem.Text = "Справка";
             // 
-            // sec10MenuItem
+            // figuresMenuItem
             // 
-            this.sec10MenuItem.Name = "sec10MenuItem";
-            this.sec10MenuItem.Size = new System.Drawing.Size(152, 22);
-            this.sec10MenuItem.Tag = "10";
-            this.sec10MenuItem.Text = "10 сек.";
-            this.sec10MenuItem.Click += new System.EventHandler(this.XsecMenuItem_Click);
+            this.figuresMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fig1MenuItem,
+            this.fig2MenuItem,
+            this.fig3MenuItem,
+            this.fig4MenuItem,
+            this.уровень5ToolStripMenuItem,
+            this.rndFigsMenuItem});
+            this.figuresMenuItem.Name = "figuresMenuItem";
+            this.figuresMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.figuresMenuItem.Text = "Изучаем фигуры";
+            // 
+            // colorsMenuItem
+            // 
+            this.colorsMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
+            this.уровень2ToolStripMenuItem1,
+            this.уровень3ToolStripMenuItem1,
+            this.уровень4ToolStripMenuItem1,
+            this.уровень5ToolStripMenuItem1,
+            this.уровень6ToolStripMenuItem1,
+            this.уровень7ToolStripMenuItem1,
+            this.rndClrsMenuItem});
+            this.colorsMenuItem.Name = "colorsMenuItem";
+            this.colorsMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.colorsMenuItem.Text = "Изучаем цвета";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Tag = "1";
+            this.toolStripMenuItem2.Text = "Уровень 1";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // rndAllMenuItem
+            // 
+            this.rndAllMenuItem.Name = "rndAllMenuItem";
+            this.rndAllMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.rndAllMenuItem.Tag = "все";
+            this.rndAllMenuItem.Text = "Случайно";
+            this.rndAllMenuItem.Click += new System.EventHandler(this.randLevelMenuItem_Click);
+            // 
+            // fig1MenuItem
+            // 
+            this.fig1MenuItem.Name = "fig1MenuItem";
+            this.fig1MenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fig1MenuItem.Tag = "8";
+            this.fig1MenuItem.Text = "Уровень 1";
+            this.fig1MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // rndFigsMenuItem
+            // 
+            this.rndFigsMenuItem.Name = "rndFigsMenuItem";
+            this.rndFigsMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rndFigsMenuItem.Tag = "фигуры";
+            this.rndFigsMenuItem.Text = "Случайно";
+            this.rndFigsMenuItem.Click += new System.EventHandler(this.randLevelMenuItem_Click);
+            // 
+            // fig2MenuItem
+            // 
+            this.fig2MenuItem.Name = "fig2MenuItem";
+            this.fig2MenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fig2MenuItem.Tag = "9";
+            this.fig2MenuItem.Text = "Уровень 2";
+            this.fig2MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // fig3MenuItem
+            // 
+            this.fig3MenuItem.Name = "fig3MenuItem";
+            this.fig3MenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fig3MenuItem.Tag = "10";
+            this.fig3MenuItem.Text = "Уровень 3";
+            this.fig3MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // fig4MenuItem
+            // 
+            this.fig4MenuItem.Name = "fig4MenuItem";
+            this.fig4MenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fig4MenuItem.Tag = "11";
+            this.fig4MenuItem.Text = "Уровень 4";
+            this.fig4MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // уровень5ToolStripMenuItem
+            // 
+            this.уровень5ToolStripMenuItem.Name = "уровень5ToolStripMenuItem";
+            this.уровень5ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.уровень5ToolStripMenuItem.Tag = "12";
+            this.уровень5ToolStripMenuItem.Text = "Уровень 5";
+            this.уровень5ToolStripMenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // rndClrsMenuItem
+            // 
+            this.rndClrsMenuItem.Name = "rndClrsMenuItem";
+            this.rndClrsMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rndClrsMenuItem.Tag = "цвета";
+            this.rndClrsMenuItem.Text = "Случайно";
+            this.rndClrsMenuItem.Click += new System.EventHandler(this.randLevelMenuItem_Click);
+            // 
+            // уровень2ToolStripMenuItem1
+            // 
+            this.уровень2ToolStripMenuItem1.Name = "уровень2ToolStripMenuItem1";
+            this.уровень2ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.уровень2ToolStripMenuItem1.Tag = "2";
+            this.уровень2ToolStripMenuItem1.Text = "Уровень 2";
+            this.уровень2ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // уровень3ToolStripMenuItem1
+            // 
+            this.уровень3ToolStripMenuItem1.Name = "уровень3ToolStripMenuItem1";
+            this.уровень3ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.уровень3ToolStripMenuItem1.Tag = "3";
+            this.уровень3ToolStripMenuItem1.Text = "Уровень 3";
+            this.уровень3ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // уровень4ToolStripMenuItem1
+            // 
+            this.уровень4ToolStripMenuItem1.Name = "уровень4ToolStripMenuItem1";
+            this.уровень4ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.уровень4ToolStripMenuItem1.Tag = "4";
+            this.уровень4ToolStripMenuItem1.Text = "Уровень 4";
+            this.уровень4ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // уровень5ToolStripMenuItem1
+            // 
+            this.уровень5ToolStripMenuItem1.Name = "уровень5ToolStripMenuItem1";
+            this.уровень5ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.уровень5ToolStripMenuItem1.Tag = "5";
+            this.уровень5ToolStripMenuItem1.Text = "Уровень 5";
+            this.уровень5ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // уровень6ToolStripMenuItem1
+            // 
+            this.уровень6ToolStripMenuItem1.Name = "уровень6ToolStripMenuItem1";
+            this.уровень6ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.уровень6ToolStripMenuItem1.Tag = "6";
+            this.уровень6ToolStripMenuItem1.Text = "Уровень 6";
+            this.уровень6ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // уровень7ToolStripMenuItem1
+            // 
+            this.уровень7ToolStripMenuItem1.Name = "уровень7ToolStripMenuItem1";
+            this.уровень7ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.уровень7ToolStripMenuItem1.Tag = "7";
+            this.уровень7ToolStripMenuItem1.Text = "Уровень 7";
+            this.уровень7ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
             // 
             // MainForm
             // 
@@ -491,18 +578,11 @@
         private System.Windows.Forms.ToolStripSeparator divider;
         private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
         private System.Windows.Forms.ToolStripMenuItem levelMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem level1MenuItem;
-        private System.Windows.Forms.ToolStripMenuItem level2MenuItem;
-        private System.Windows.Forms.ToolStripMenuItem level3MenuItem;
-        private System.Windows.Forms.ToolStripMenuItem level4MenuItem;
-        private System.Windows.Forms.ToolStripMenuItem level5MenuItem;
-        private System.Windows.Forms.ToolStripMenuItem level6MenuItem;
         private System.Windows.Forms.ToolStripMenuItem easyHardMenuItem;
         private System.Windows.Forms.ToolStripMenuItem twoAnsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fourAnsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sixAnsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem randLevelMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gameModeMenuItem;
         private System.Windows.Forms.ToolStripMenuItem endlessMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toXerrMenuItem;
@@ -514,11 +594,27 @@
         private System.Windows.Forms.ToolStripMenuItem min1MenuItem;
         private System.Windows.Forms.ToolStripMenuItem min2MenuItem;
         private System.Windows.Forms.ToolStripMenuItem min5MenuItem;
-        private System.Windows.Forms.ToolStripMenuItem level7MenuItem;
         private System.Windows.Forms.ToolStripMenuItem tenErrMenuItem;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.ToolStripMenuItem min10MenuItem;
         private System.Windows.Forms.ToolStripMenuItem sec10MenuItem;
+        private System.Windows.Forms.ToolStripMenuItem figuresMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fig1MenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fig2MenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fig3MenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fig4MenuItem;
+        private System.Windows.Forms.ToolStripMenuItem уровень5ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rndFigsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem colorsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem rndClrsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rndAllMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem уровень2ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem уровень3ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem уровень4ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem уровень5ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem уровень6ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem уровень7ToolStripMenuItem1;
     }
 }
 

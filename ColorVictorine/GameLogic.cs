@@ -12,7 +12,7 @@ namespace ColorVictorine
     {
         private   DelegateSetSize set_cli_size;
         private   Control   panel;
-        public    GameData  data;
+        public    ColorData colors;
         public    Color     qlabel_color  =   Color.FromArgb(80, 80, 80);
         public    Color     txt_color     =   Color.FromArgb(60, 60, 60);
 
@@ -55,7 +55,7 @@ namespace ColorVictorine
 
         void Init()
         {
-            data = new GameData();
+            colors = new ColorData();
             ans_start = new Point(
                     border,
                     border*3 + qcolor_size.Height + 20
@@ -155,29 +155,29 @@ namespace ColorVictorine
         {
             if (type < 3)
             {
-                true_ans = ans_num != 2 ? RndNum(data.N, true_ans) : RndNum(data.N, -1);
+                true_ans = ans_num != 2 ? RndNum(colors.N, true_ans) : RndNum(colors.N, -1);
                 true_lbl = RndNum(ans_num, true_lbl);
                 ans_labels[true_lbl].Tag = true_ans;
                 switch (type)
                 {
                     case 1:
                         ans_labels[true_lbl].Text = "";
-                        ans_labels[true_lbl].BackColor = data.colors[true_ans];
+                        ans_labels[true_lbl].BackColor = colors.colors[true_ans];
                         break;
                     case 2:
-                        ans_labels[true_lbl].BackColor = data.bg_clr;
+                        ans_labels[true_lbl].BackColor = colors.bg_clr;
                         ans_labels[true_lbl].ForeColor = txt_color;
-                        ans_labels[true_lbl].Text = data.names[true_ans].ToUpper();
+                        ans_labels[true_lbl].Text = colors.names[true_ans].ToUpper();
                         break;
                 }
             }
             else
             {
-                seven_text  = RndNum(data.N, seven_text);
+                seven_text  = RndNum(colors.N, seven_text);
 
                 true_ans = r.Next(2);
 
-                seven_color = true_ans == 0 ? seven_text : RndNum(data.N, -1);
+                seven_color = true_ans == 0 ? seven_text : RndNum(colors.N, -1);
 
             }
             
@@ -193,7 +193,7 @@ namespace ColorVictorine
 
                 do
                 {
-                    ans = r.Next(data.N);
+                    ans = r.Next(colors.N);
                 } while (ans == true_ans || ColorIsExist(i, ans));
 
                 
@@ -204,19 +204,19 @@ namespace ColorVictorine
                         ans_labels[i].Text = "";
                         ans_labels[i].Tag = ans;
                         ans_labels[i].ForeColor = txt_color;
-                        ans_labels[i].BackColor = data.colors[ans];
+                        ans_labels[i].BackColor = colors.colors[ans];
                         break;
                     case 2:
-                        ans_labels[i].Text = data.names[ans].ToUpper();
+                        ans_labels[i].Text = colors.names[ans].ToUpper();
                         ans_labels[i].Tag = ans;
                         ans_labels[i].ForeColor = txt_color;
-                        ans_labels[i].BackColor = data.bg_clr;
+                        ans_labels[i].BackColor = colors.bg_clr;
                         break;
                     case 3:
-                        ans_labels[i].Text = data.seven_bttns_txt[i];
+                        ans_labels[i].Text = colors.seven_bttns_txt[i];
                         ans_labels[i].Tag = i;
                         ans_labels[i].ForeColor = Color.White;
-                        ans_labels[i].BackColor = data.seven_bttns_clr[i];
+                        ans_labels[i].BackColor = colors.seven_bttns_clr[i];
                         break;
                 }
             }
@@ -225,43 +225,43 @@ namespace ColorVictorine
 
         public void SetQuestLabels()
         {
-            quest_label.Text = data.questions[level-1];
+            quest_label.Text = colors.questions[level-1];
             
             switch (quest_type)
             {
                 case 1:
                     quest_color.Click      -=   quest_color_MouseDown;
-                    quest_color.BackColor   =   data.colors[true_ans];
+                    quest_color.BackColor   =   colors.colors[true_ans];
                     quest_color.Text        =   "";
                     break;
                 case 2:
                     quest_color.Click      +=   quest_color_MouseDown;
-                    quest_color.BackColor   =   data.colors[RndNum(data.N,-1)];
+                    quest_color.BackColor   =   colors.colors[RndNum(colors.N,-1)];
                     quest_color.ForeColor   =   Color.White;
-                    quest_color.Font        =   data.small_font;
+                    quest_color.Font        =   colors.small_font;
                     quest_color.Text        =   "прослушать";
-                    data.PlaySound(true_ans);
+                    colors.PlaySound(true_ans);
                     break;
                 case 3:
                     quest_color.Click      -=   quest_color_MouseDown;
                     quest_color.BackColor   =   qlabel_color;
                     quest_color.ForeColor   =   Color.White;
-                    quest_color.Font        =   data.small_font;
-                    quest_color.Text        =   data.names[true_ans];
+                    quest_color.Font        =   colors.small_font;
+                    quest_color.Text        =   colors.names[true_ans];
                     break;
                 case 4:
                     quest_color.Click      -=   quest_color_MouseDown;
                     quest_color.BackColor   =   panel.BackColor;
-                    quest_color.ForeColor   =   data.colors[seven_color];
-                    quest_color.Font        =   data.big_font;
-                    quest_color.Text        =   data.names[seven_text].ToUpper();
+                    quest_color.ForeColor   =   colors.colors[seven_color];
+                    quest_color.Font        =   colors.big_font;
+                    quest_color.Text        =   colors.names[seven_text].ToUpper();
                     break;
             }
         }
 
         void quest_color_MouseDown(object sender, EventArgs e)
         {
-            data.PlaySound(true_ans);
+            colors.PlaySound(true_ans);
         }
 
         bool ColorIsExist(int i, int ans)
@@ -307,9 +307,9 @@ namespace ColorVictorine
             quest_label.Text = "Текст вопроса";
             quest_label.Location = new Point (
                                     ans_start.X, ans_start.X + 20);
-            quest_label.BackColor = data.bg_clr;
+            quest_label.BackColor = colors.bg_clr;
             quest_label.ForeColor = txt_color;
-            quest_label.Font = data.reg_font;
+            quest_label.Font = colors.reg_font;
             quest_label.TextAlign = ContentAlignment.MiddleCenter;
             quest_label.BorderStyle = BorderStyle.None;
             panel.Controls.Add(quest_label);
@@ -319,9 +319,9 @@ namespace ColorVictorine
             quest_color.Size = QColorSize(1);
             quest_color.Text = "Цвет вопроса";
             quest_color.Location = QColorLocation(1);
-            quest_color.BackColor = data.bg_clr;
+            quest_color.BackColor = colors.bg_clr;
             quest_color.ForeColor = Color.White;
-            quest_color.Font = data.small_font;
+            quest_color.Font = colors.small_font;
             quest_color.TextAlign = ContentAlignment.MiddleCenter;
             quest_color.BorderStyle = BorderStyle.None;
             panel.Controls.Add(quest_color);
@@ -616,7 +616,7 @@ namespace ColorVictorine
             {
                 case 2:
                     label.ForeColor = field.txt_color;
-                    label.BackColor = field.data.bg_clr;
+                    label.BackColor = field.colors.bg_clr;
                     break;
                 case 1:
                     label.ForeColor = field.txt_color;
@@ -631,11 +631,11 @@ namespace ColorVictorine
             {
                 case 2:
                     label.ForeColor = Color.White;
-                    label.BackColor = field.data.colors[(int)label.Tag];
+                    label.BackColor = field.colors.colors[(int)label.Tag];
                     break;
                 case 1:
                     label.ForeColor = Color.White;
-                    label.Text = field.data.names[(int)label.Tag];
+                    label.Text = field.colors.names[(int)label.Tag];
                     break;
             }
         }
