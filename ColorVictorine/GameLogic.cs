@@ -83,9 +83,32 @@ namespace ColorVictorine
 
         public void LoadField(int level)
         {
+            ReInitAnsLabels();
             bool k = true;
             this.level = level;
-            
+            //
+            //
+            //ans_type   = 1              ответы - закрашенные прямоугольники, при наведении отображается текст
+            //ans_type   = 2              ответы - текст, при наведении подсвечивается цветом
+            //ans_type   = 3              ответы - две метки (ДА, НЕТ)
+            //
+            //фигуры
+            //ans_type   = 4              ответы - прямоугольники с изображениями  фигур
+            //                                     (при наведении - название       фигуры)
+            //
+            //ans_type   = 5              ответы - прямоугольники с названиями     фигур 
+            //                                     (при наведении - изображение    фигуры)
+            //
+            //quest_type = 1              метка вопроса - закрашенный в цвет правильного ответа прямоугольник 
+            //quest_type = 2              метка вопроса - прямоугольник с текстом
+            //quest_type = 3              метка вопроса - кнопка "прослушать" для воспроизведения звука
+            //quest_type = 4              метка вопроса - ткст, написанный цветом (соответствует ли название фактическому цвету) 
+            //
+            //фигуры
+            //quest_type = 5              метка вопроса - изображение фигуры
+            //quest_type = 6              метка вопроса - название    фигуры
+            //
+            //
             switch (level)
             {
                 case 1:
@@ -101,21 +124,37 @@ namespace ColorVictorine
                     quest_type = 2;
                     break;
                 case 4:
-                    quest_type = 2;
-                    ans_type = 2;
+                    quest_type  = 2;
+                    ans_type    = 2;
                     break;
                 case 5:
-                    quest_type = 3;
-                    ans_type = 1;
+                    quest_type  = 3;
+                    ans_type    = 1;
                     break;
                 case 6:
-                    quest_type = 3;
-                    ans_type = 2;
+                    quest_type  = 3;
+                    ans_type    = 2;
                     break;
                 case 7:
-                    quest_type = 4;
-                    ans_type = 3;
-                    k = false;
+                    quest_type  = 4;
+                    ans_type    = 3;
+                    break;
+
+                case 8:
+                    quest_type  = 5;
+                    ans_type    = 4;
+                    break;
+                case 9:
+                    quest_type  = 5;
+                    ans_type    = 5;
+                    break;
+                case 10:
+                    quest_type  = 6;
+                    ans_type    = 4;
+                    break;
+                case 11:
+                    quest_type  = 6;
+                    ans_type    = 5;
                     break;
             }
             PlaseLabels(ans_type);
@@ -183,6 +222,11 @@ namespace ColorVictorine
             
         }
 
+        void ReInitAnsLabels()
+        {
+            DisposeAns();
+            CreateAnsLabels();
+        }
 
         void SetAnsLabels(int ans_num, int type)
         {
@@ -533,6 +577,7 @@ namespace ColorVictorine
 
         public void LoadLevel(bool next = false)
         {
+            
             if (rnd_level) level = GameField.r.Next(1, max_level + 1);
 
             field.LoadField(level);
@@ -542,6 +587,7 @@ namespace ColorVictorine
                                     "Ошибок: "  + wrng_clicks.ToString().PadLeft(3) + " ]";
 
             SetInfoLabel();
+            SetEvents();
         }
 
         void SetInfoLabel()
