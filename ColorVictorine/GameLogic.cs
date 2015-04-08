@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -111,51 +112,17 @@ namespace ColorVictorine
             //
             switch (level)
             {
-                case 1:
-                    ans_type = 1;
-                    quest_type = 1;
-                    break;
-                case 2: 
-                    ans_type = 2;
-                    quest_type = 1;
-                    break;
-                case 3:
-                    ans_type = 1;
-                    quest_type = 2;
-                    break;
-                case 4:
-                    quest_type  = 2;
-                    ans_type    = 2;
-                    break;
-                case 5:
-                    quest_type  = 3;
-                    ans_type    = 1;
-                    break;
-                case 6:
-                    quest_type  = 3;
-                    ans_type    = 2;
-                    break;
-                case 7:
-                    quest_type  = 4;
-                    ans_type    = 3;
-                    break;
-
-                case 8:
-                    quest_type  = 5;
-                    ans_type    = 4;
-                    break;
-                case 9:
-                    quest_type  = 5;
-                    ans_type    = 5;
-                    break;
-                case 10:
-                    quest_type  = 6;
-                    ans_type    = 4;
-                    break;
-                case 11:
-                    quest_type  = 6;
-                    ans_type    = 5;
-                    break;
+                case 1:   quest_type = 1;   ans_type  = 1;  break;
+                case 2:   quest_type = 1;   ans_type  = 2;  break;
+                case 3:   quest_type = 2;   ans_type  = 1;  break;
+                case 4:   quest_type = 2;   ans_type  = 2;  break;
+                case 5:   quest_type = 3;   ans_type  = 1;  break;
+                case 6:   quest_type = 3;   ans_type  = 2;  break;
+                case 7:   quest_type = 4;   ans_type  = 3;  break;
+                case 8:   quest_type = 5;   ans_type  = 4;  break;
+                case 9:   quest_type = 5;   ans_type  = 5;  break;
+                case 10:  quest_type = 6;   ans_type  = 4;  break;
+                case 11:  quest_type = 6;   ans_type  = 5;  break;
             }
             PlaseLabels(ans_type);
         }
@@ -186,40 +153,52 @@ namespace ColorVictorine
             do
             {
                 ans = r.Next(to);
-            } while (ans == except);
+            }   while (ans == except);
             return ans;
         }
 
         void SetTrueAns(int type)
         {
-            if (type < 3)
+            if (type == 3)
             {
-                true_ans = ans_num != 2 ? RndNum(data.n_colors, true_ans) : RndNum(data.n_colors, -1);
-                true_lbl = RndNum(ans_num, true_lbl);
-                ans_labels[true_lbl].Tag = true_ans;
-                switch (type)
-                {
-                    case 1:
-                        ans_labels[true_lbl].Text = "";
-                        ans_labels[true_lbl].BackColor = data.colors[true_ans];
-                        break;
-                    case 2:
-                        ans_labels[true_lbl].BackColor = data.bg_clr;
-                        ans_labels[true_lbl].ForeColor = txt_color;
-                        ans_labels[true_lbl].Text = data.clr_names[true_ans].ToUpper();
-                        break;
-                }
-            }
-            else
-            {
-                seven_text  = RndNum(data.n_colors, seven_text);
+                seven_text = RndNum(data.n_colors, seven_text);
 
                 true_ans = r.Next(2);
 
                 seven_color = true_ans == 0 ? seven_text : RndNum(data.n_colors, -1);
 
             }
-            
+            else //if (type < 3)
+            {
+                true_lbl = RndNum(ans_num, true_lbl);
+
+                switch (type)
+                {
+                    case 1:
+                        true_ans = ans_num != 2 ? RndNum(data.n_colors, true_ans) : RndNum(data.n_colors, -1);
+                        ans_labels[true_lbl].Text = "";
+                        ans_labels[true_lbl].BackColor = data.colors[true_ans];
+                        break;
+                    case 2:
+                        true_ans = ans_num != 2 ? RndNum(data.n_colors, true_ans) : RndNum(data.n_colors, -1);
+                        ans_labels[true_lbl].BackColor = data.bg_clr;
+                        ans_labels[true_lbl].ForeColor = txt_color;
+                        ans_labels[true_lbl].Text = data.clr_names[true_ans].ToUpper();
+                        break;
+                    case 4:
+                        true_ans = ans_num != 2 ? RndNum(data.n_figures, true_ans) : RndNum(data.n_figures, -1);
+                        data.DrawFigure(ans_labels[true_lbl], true_ans);
+                        break;
+                    case 5:
+                        true_ans = ans_num != 2 ? RndNum(data.n_figures, true_ans) : RndNum(data.n_figures, -1);
+                        ans_labels[true_lbl].BackColor = data.bg_clr;
+                        ans_labels[true_lbl].ForeColor = txt_color;
+                        ans_labels[true_lbl].Text = data.fig_names[true_ans].ToUpper();
+                        break;
+                }
+                 
+                ans_labels[true_lbl].Tag = true_ans;
+            }
         }
 
         void ReInitAnsLabels()
@@ -231,17 +210,17 @@ namespace ColorVictorine
         void SetAnsLabels(int ans_num, int type)
         {
             int ans;
+            int num = type <= 3 ? data.n_colors : data.n_figures;
+
             for (int i = 0; i < ans_num; i++)
             {
                 if (i == true_lbl && type!= 3) continue;
 
                 do
                 {
-                    ans = r.Next(data.n_colors);
+                    ans = r.Next(num);
                 } while (ans == true_ans || ColorIsExist(i, ans));
-
                 
-
                 switch (type)
                 {
                     case 1:
@@ -262,10 +241,22 @@ namespace ColorVictorine
                         ans_labels[i].ForeColor = Color.White;
                         ans_labels[i].BackColor = data.seven_bttns_clr[i];
                         break;
+                    case 4:
+                        ans_labels[i].Text = data.fig_names[ans].ToUpper();
+                        ans_labels[i].Tag = ans;
+                        ans_labels[i].ForeColor = txt_color;
+                        ans_labels[i].BackColor = data.colors[RndNum(data.n_colors, -1)];
+                        break;
+                    case 5:
+                        ans_labels[i].Text = data.fig_names[ans].ToUpper();
+                        ans_labels[i].Tag = ans;
+                        ans_labels[i].ForeColor = Color.White;
+                        ans_labels[i].BackColor = data.colors[RndNum(data.n_colors, -1)];
+                        break;
                 }
             }
-
         }
+
 
         public void SetQuestLabels()
         {
@@ -299,6 +290,17 @@ namespace ColorVictorine
                     quest_color.ForeColor   =   data.colors[seven_color];
                     quest_color.Font        =   data.big_font;
                     quest_color.Text        =   data.clr_names[seven_text].ToUpper();
+                    break;
+                case 5:
+                    quest_color.Click      -=   quest_color_MouseDown;
+                    data.DrawFigure(quest_color, true_ans);
+                    break;
+                case 6:
+                    quest_color.Click      -=   quest_color_MouseDown;
+                    quest_color.BackColor   =   data.colors[RndNum(data.n_colors,-1)];
+                    quest_color.ForeColor   =   Color.White;
+                    quest_color.Font        =   data.small_font;
+                    quest_color.Text        =   data.fig_names[true_ans].ToUpper();
                     break;
             }
         }

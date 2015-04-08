@@ -57,29 +57,28 @@
             this.min5MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.min10MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.levelMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.easyHardMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.twoAnsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fourAnsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sixAnsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timer = new System.Windows.Forms.Timer(this.components);
             this.figuresMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.colorsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.rndAllMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fig1MenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rndFigsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fig2MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fig3MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fig4MenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.уровень5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rndClrsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rndFigsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.уровень2ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.уровень3ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.уровень4ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.уровень5ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.уровень6ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.уровень7ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.rndClrsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rndAllMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.easyHardMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.twoAnsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fourAnsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sixAnsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.panel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -357,6 +356,145 @@
             this.levelMenuItem.Size = new System.Drawing.Size(65, 20);
             this.levelMenuItem.Text = "Уровень";
             // 
+            // figuresMenuItem
+            // 
+            this.figuresMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fig1MenuItem,
+            this.fig2MenuItem,
+            this.fig3MenuItem,
+            this.fig4MenuItem,
+            this.rndFigsMenuItem});
+            this.figuresMenuItem.Name = "figuresMenuItem";
+            this.figuresMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.figuresMenuItem.Text = "Изучаем фигуры";
+            // 
+            // fig1MenuItem
+            // 
+            this.fig1MenuItem.Name = "fig1MenuItem";
+            this.fig1MenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fig1MenuItem.Tag = "8";
+            this.fig1MenuItem.Text = "Уровень 1";
+            this.fig1MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // fig2MenuItem
+            // 
+            this.fig2MenuItem.Name = "fig2MenuItem";
+            this.fig2MenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fig2MenuItem.Tag = "9";
+            this.fig2MenuItem.Text = "Уровень 2";
+            this.fig2MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // fig3MenuItem
+            // 
+            this.fig3MenuItem.Name = "fig3MenuItem";
+            this.fig3MenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fig3MenuItem.Tag = "10";
+            this.fig3MenuItem.Text = "Уровень 3";
+            this.fig3MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // fig4MenuItem
+            // 
+            this.fig4MenuItem.Name = "fig4MenuItem";
+            this.fig4MenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fig4MenuItem.Tag = "11";
+            this.fig4MenuItem.Text = "Уровень 4";
+            this.fig4MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // rndFigsMenuItem
+            // 
+            this.rndFigsMenuItem.Name = "rndFigsMenuItem";
+            this.rndFigsMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rndFigsMenuItem.Tag = "фигуры";
+            this.rndFigsMenuItem.Text = "Случайно";
+            this.rndFigsMenuItem.Click += new System.EventHandler(this.randLevelMenuItem_Click);
+            // 
+            // colorsMenuItem
+            // 
+            this.colorsMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
+            this.уровень2ToolStripMenuItem1,
+            this.уровень3ToolStripMenuItem1,
+            this.уровень4ToolStripMenuItem1,
+            this.уровень5ToolStripMenuItem1,
+            this.уровень6ToolStripMenuItem1,
+            this.уровень7ToolStripMenuItem1,
+            this.rndClrsMenuItem});
+            this.colorsMenuItem.Name = "colorsMenuItem";
+            this.colorsMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.colorsMenuItem.Text = "Изучаем цвета";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(129, 22);
+            this.toolStripMenuItem2.Tag = "1";
+            this.toolStripMenuItem2.Text = "Уровень 1";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // уровень2ToolStripMenuItem1
+            // 
+            this.уровень2ToolStripMenuItem1.Name = "уровень2ToolStripMenuItem1";
+            this.уровень2ToolStripMenuItem1.Size = new System.Drawing.Size(129, 22);
+            this.уровень2ToolStripMenuItem1.Tag = "2";
+            this.уровень2ToolStripMenuItem1.Text = "Уровень 2";
+            this.уровень2ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // уровень3ToolStripMenuItem1
+            // 
+            this.уровень3ToolStripMenuItem1.Name = "уровень3ToolStripMenuItem1";
+            this.уровень3ToolStripMenuItem1.Size = new System.Drawing.Size(129, 22);
+            this.уровень3ToolStripMenuItem1.Tag = "3";
+            this.уровень3ToolStripMenuItem1.Text = "Уровень 3";
+            this.уровень3ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // уровень4ToolStripMenuItem1
+            // 
+            this.уровень4ToolStripMenuItem1.Name = "уровень4ToolStripMenuItem1";
+            this.уровень4ToolStripMenuItem1.Size = new System.Drawing.Size(129, 22);
+            this.уровень4ToolStripMenuItem1.Tag = "4";
+            this.уровень4ToolStripMenuItem1.Text = "Уровень 4";
+            this.уровень4ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // уровень5ToolStripMenuItem1
+            // 
+            this.уровень5ToolStripMenuItem1.Name = "уровень5ToolStripMenuItem1";
+            this.уровень5ToolStripMenuItem1.Size = new System.Drawing.Size(129, 22);
+            this.уровень5ToolStripMenuItem1.Tag = "5";
+            this.уровень5ToolStripMenuItem1.Text = "Уровень 5";
+            this.уровень5ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // уровень6ToolStripMenuItem1
+            // 
+            this.уровень6ToolStripMenuItem1.Name = "уровень6ToolStripMenuItem1";
+            this.уровень6ToolStripMenuItem1.Size = new System.Drawing.Size(129, 22);
+            this.уровень6ToolStripMenuItem1.Tag = "6";
+            this.уровень6ToolStripMenuItem1.Text = "Уровень 6";
+            this.уровень6ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // уровень7ToolStripMenuItem1
+            // 
+            this.уровень7ToolStripMenuItem1.Name = "уровень7ToolStripMenuItem1";
+            this.уровень7ToolStripMenuItem1.Size = new System.Drawing.Size(129, 22);
+            this.уровень7ToolStripMenuItem1.Tag = "7";
+            this.уровень7ToolStripMenuItem1.Text = "Уровень 7";
+            this.уровень7ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
+            // 
+            // rndClrsMenuItem
+            // 
+            this.rndClrsMenuItem.Name = "rndClrsMenuItem";
+            this.rndClrsMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.rndClrsMenuItem.Tag = "цвета";
+            this.rndClrsMenuItem.Text = "Случайно";
+            this.rndClrsMenuItem.Click += new System.EventHandler(this.randLevelMenuItem_Click);
+            // 
+            // rndAllMenuItem
+            // 
+            this.rndAllMenuItem.Name = "rndAllMenuItem";
+            this.rndAllMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.rndAllMenuItem.Tag = "все";
+            this.rndAllMenuItem.Text = "Случайно";
+            this.rndAllMenuItem.Click += new System.EventHandler(this.randLevelMenuItem_Click);
+            // 
             // easyHardMenuItem
             // 
             this.easyHardMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -396,154 +534,6 @@
             this.helpMenuItem.Name = "helpMenuItem";
             this.helpMenuItem.Size = new System.Drawing.Size(65, 20);
             this.helpMenuItem.Text = "Справка";
-            // 
-            // figuresMenuItem
-            // 
-            this.figuresMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fig1MenuItem,
-            this.fig2MenuItem,
-            this.fig3MenuItem,
-            this.fig4MenuItem,
-            this.уровень5ToolStripMenuItem,
-            this.rndFigsMenuItem});
-            this.figuresMenuItem.Name = "figuresMenuItem";
-            this.figuresMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.figuresMenuItem.Text = "Изучаем фигуры";
-            // 
-            // colorsMenuItem
-            // 
-            this.colorsMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2,
-            this.уровень2ToolStripMenuItem1,
-            this.уровень3ToolStripMenuItem1,
-            this.уровень4ToolStripMenuItem1,
-            this.уровень5ToolStripMenuItem1,
-            this.уровень6ToolStripMenuItem1,
-            this.уровень7ToolStripMenuItem1,
-            this.rndClrsMenuItem});
-            this.colorsMenuItem.Name = "colorsMenuItem";
-            this.colorsMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.colorsMenuItem.Text = "Изучаем цвета";
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem2.Tag = "1";
-            this.toolStripMenuItem2.Text = "Уровень 1";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.levelMenuItem_Click);
-            // 
-            // rndAllMenuItem
-            // 
-            this.rndAllMenuItem.Name = "rndAllMenuItem";
-            this.rndAllMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.rndAllMenuItem.Tag = "все";
-            this.rndAllMenuItem.Text = "Случайно";
-            this.rndAllMenuItem.Click += new System.EventHandler(this.randLevelMenuItem_Click);
-            // 
-            // fig1MenuItem
-            // 
-            this.fig1MenuItem.Name = "fig1MenuItem";
-            this.fig1MenuItem.Size = new System.Drawing.Size(152, 22);
-            this.fig1MenuItem.Tag = "8";
-            this.fig1MenuItem.Text = "Уровень 1";
-            this.fig1MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
-            // 
-            // rndFigsMenuItem
-            // 
-            this.rndFigsMenuItem.Name = "rndFigsMenuItem";
-            this.rndFigsMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.rndFigsMenuItem.Tag = "фигуры";
-            this.rndFigsMenuItem.Text = "Случайно";
-            this.rndFigsMenuItem.Click += new System.EventHandler(this.randLevelMenuItem_Click);
-            // 
-            // fig2MenuItem
-            // 
-            this.fig2MenuItem.Name = "fig2MenuItem";
-            this.fig2MenuItem.Size = new System.Drawing.Size(152, 22);
-            this.fig2MenuItem.Tag = "9";
-            this.fig2MenuItem.Text = "Уровень 2";
-            this.fig2MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
-            // 
-            // fig3MenuItem
-            // 
-            this.fig3MenuItem.Name = "fig3MenuItem";
-            this.fig3MenuItem.Size = new System.Drawing.Size(152, 22);
-            this.fig3MenuItem.Tag = "10";
-            this.fig3MenuItem.Text = "Уровень 3";
-            this.fig3MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
-            // 
-            // fig4MenuItem
-            // 
-            this.fig4MenuItem.Name = "fig4MenuItem";
-            this.fig4MenuItem.Size = new System.Drawing.Size(152, 22);
-            this.fig4MenuItem.Tag = "11";
-            this.fig4MenuItem.Text = "Уровень 4";
-            this.fig4MenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
-            // 
-            // уровень5ToolStripMenuItem
-            // 
-            this.уровень5ToolStripMenuItem.Name = "уровень5ToolStripMenuItem";
-            this.уровень5ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.уровень5ToolStripMenuItem.Tag = "12";
-            this.уровень5ToolStripMenuItem.Text = "Уровень 5";
-            this.уровень5ToolStripMenuItem.Click += new System.EventHandler(this.levelMenuItem_Click);
-            // 
-            // rndClrsMenuItem
-            // 
-            this.rndClrsMenuItem.Name = "rndClrsMenuItem";
-            this.rndClrsMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.rndClrsMenuItem.Tag = "цвета";
-            this.rndClrsMenuItem.Text = "Случайно";
-            this.rndClrsMenuItem.Click += new System.EventHandler(this.randLevelMenuItem_Click);
-            // 
-            // уровень2ToolStripMenuItem1
-            // 
-            this.уровень2ToolStripMenuItem1.Name = "уровень2ToolStripMenuItem1";
-            this.уровень2ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.уровень2ToolStripMenuItem1.Tag = "2";
-            this.уровень2ToolStripMenuItem1.Text = "Уровень 2";
-            this.уровень2ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
-            // 
-            // уровень3ToolStripMenuItem1
-            // 
-            this.уровень3ToolStripMenuItem1.Name = "уровень3ToolStripMenuItem1";
-            this.уровень3ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.уровень3ToolStripMenuItem1.Tag = "3";
-            this.уровень3ToolStripMenuItem1.Text = "Уровень 3";
-            this.уровень3ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
-            // 
-            // уровень4ToolStripMenuItem1
-            // 
-            this.уровень4ToolStripMenuItem1.Name = "уровень4ToolStripMenuItem1";
-            this.уровень4ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.уровень4ToolStripMenuItem1.Tag = "4";
-            this.уровень4ToolStripMenuItem1.Text = "Уровень 4";
-            this.уровень4ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
-            // 
-            // уровень5ToolStripMenuItem1
-            // 
-            this.уровень5ToolStripMenuItem1.Name = "уровень5ToolStripMenuItem1";
-            this.уровень5ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.уровень5ToolStripMenuItem1.Tag = "5";
-            this.уровень5ToolStripMenuItem1.Text = "Уровень 5";
-            this.уровень5ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
-            // 
-            // уровень6ToolStripMenuItem1
-            // 
-            this.уровень6ToolStripMenuItem1.Name = "уровень6ToolStripMenuItem1";
-            this.уровень6ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.уровень6ToolStripMenuItem1.Tag = "6";
-            this.уровень6ToolStripMenuItem1.Text = "Уровень 6";
-            this.уровень6ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
-            // 
-            // уровень7ToolStripMenuItem1
-            // 
-            this.уровень7ToolStripMenuItem1.Name = "уровень7ToolStripMenuItem1";
-            this.уровень7ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.уровень7ToolStripMenuItem1.Tag = "7";
-            this.уровень7ToolStripMenuItem1.Text = "Уровень 7";
-            this.уровень7ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
             // 
             // MainForm
             // 
@@ -603,7 +593,6 @@
         private System.Windows.Forms.ToolStripMenuItem fig2MenuItem;
         private System.Windows.Forms.ToolStripMenuItem fig3MenuItem;
         private System.Windows.Forms.ToolStripMenuItem fig4MenuItem;
-        private System.Windows.Forms.ToolStripMenuItem уровень5ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rndFigsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem colorsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
