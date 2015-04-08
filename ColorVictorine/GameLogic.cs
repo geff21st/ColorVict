@@ -585,7 +585,8 @@ namespace ColorVictorine
         public   Control    panel;
         private  int        ans_num     =    6;
         private  int        level       =    1;
-        private  int        max_level   =    7;
+        private  int        max_clr_level   =    7;
+        private  int        max_fig_level   =    11;
 
         
 
@@ -593,6 +594,7 @@ namespace ColorVictorine
         private  int        wrng_clicks =    0;
 
         private  bool       rnd_level = false;
+        private  int        rnd_type  = 0;
 
         public GameLogic(Control panel, DelegateSetSize set_cli_size, Timer timer)
         {
@@ -666,8 +668,19 @@ namespace ColorVictorine
 
         public void LoadLevel(bool next = false)
         {
-            
-            if (rnd_level) level = GameField.r.Next(1, max_level + 1);
+            switch (rnd_type)
+            {
+                case 1:
+                    level = GameField.r.Next(1, max_clr_level + 1);
+                    break;
+                case 3:
+                    level = GameField.r.Next(max_clr_level + 1, max_fig_level + 1);
+                    break;
+                case 2:
+                    level = GameField.r.Next(1, max_fig_level + 1);
+                    break;
+            }
+            //if (rnd_level) level = GameField.r.Next(1, max_level + 1);
 
             field.LoadField(level);
             //Режим: [" + mode + "]   
@@ -734,12 +747,14 @@ namespace ColorVictorine
             //LoadLevel();
             NewGame();
         }
-        public void SetRandLevel()
+        public void SetRandLevel(int i)
         {
+            rnd_type = i;
             rnd_level = true;
         }
         public void SetLevel(int i)
         {
+            rnd_type = 0;
             rnd_level = false;
             level = i;
             NewGame();

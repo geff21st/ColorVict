@@ -58,7 +58,8 @@ namespace ColorVictorine
 
         private void randLevelMenuItem_Click(object sender, EventArgs e)
         {
-            game.SetRandLevel();
+            var item = (ToolStripMenuItem)sender;
+            game.SetRandLevel(int.Parse(item.Tag.ToString()));
         }
 
         private void ErrMenuItem_Click(object sender, EventArgs e)
@@ -86,6 +87,17 @@ namespace ColorVictorine
         {
             var item = (ToolStripMenuItem)sender;
             game.SetMode("на время", int.Parse(item.Tag.ToString()));
+        }
+
+        private void helpMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Программа призвана помочь детям и их родителям\n" +
+                            "в изучении геометрических фигур и цветов.\n" +
+                            "\n" +
+                            "Над программой работали:\n" +
+                            "Александр Кузнецов\n" +
+                            "Сухов Иван\n\n" +
+                            "© Чебоксары, 2015 г.");
         }
     }
 }

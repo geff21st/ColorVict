@@ -67,7 +67,6 @@ namespace ColorVictorine
         {
             Init();
         }
-
         void Init()
         {
             waveOutDevice = new WaveOut();
@@ -103,7 +102,6 @@ namespace ColorVictorine
 
             }
         }
-
         public void PlaySound(int i)
         {
             waveOutDevice.Stop();
@@ -113,9 +111,7 @@ namespace ColorVictorine
             waveOutDevice.Init(audioFileReader);
             waveOutDevice.Play();
         }
-
         private Bitmap bmp;
-
         public void SetFigure(PictureBox box, int i)
         {
             box.Image = Image.FromFile(fig_pics[i]);

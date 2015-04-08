@@ -309,7 +309,7 @@
             // 
             this.rndFigsMenuItem.Name = "rndFigsMenuItem";
             this.rndFigsMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.rndFigsMenuItem.Tag = "фигуры";
+            this.rndFigsMenuItem.Tag = "3";
             this.rndFigsMenuItem.Text = "Случайно";
             this.rndFigsMenuItem.Click += new System.EventHandler(this.randLevelMenuItem_Click);
             // 
@@ -388,7 +388,7 @@
             // 
             this.rndClrsMenuItem.Name = "rndClrsMenuItem";
             this.rndClrsMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.rndClrsMenuItem.Tag = "цвета";
+            this.rndClrsMenuItem.Tag = "2";
             this.rndClrsMenuItem.Text = "Случайно";
             this.rndClrsMenuItem.Visible = false;
             this.rndClrsMenuItem.Click += new System.EventHandler(this.randLevelMenuItem_Click);
@@ -397,7 +397,7 @@
             // 
             this.rndAllMenuItem.Name = "rndAllMenuItem";
             this.rndAllMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.rndAllMenuItem.Tag = "все";
+            this.rndAllMenuItem.Tag = "1";
             this.rndAllMenuItem.Text = "Случайно";
             this.rndAllMenuItem.Click += new System.EventHandler(this.randLevelMenuItem_Click);
             // 
@@ -440,6 +440,7 @@
             this.helpMenuItem.Name = "helpMenuItem";
             this.helpMenuItem.Size = new System.Drawing.Size(65, 20);
             this.helpMenuItem.Text = "Справка";
+            this.helpMenuItem.Click += new System.EventHandler(this.helpMenuItem_Click);
             // 
             // MainForm
             // 
