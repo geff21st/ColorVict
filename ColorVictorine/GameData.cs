@@ -24,6 +24,7 @@ namespace ColorVictorine
         public      string []   clr_names      { get; private set; }
         public      string []   clr_sounds     { get; private set; }
         public      string []   fig_names      { get; private set; }
+        public      string []   fig_pics       { get; private set; }
                     
         public      int         n_colors       { get; private set; }
         public      int         n_figures      { get; private set; }
@@ -92,10 +93,14 @@ namespace ColorVictorine
             n_figures = data.Length;
 
             fig_names   = new string [n_figures];
+            fig_pics    = new string [n_figures];
 
             for (int i = 0; i < data.Length; i++)
             {
-                fig_names[i] = data[i];
+                str = data[i].Split();
+                fig_names[i] = str[0];
+                fig_pics[i]  = str[1];
+
             }
         }
 
@@ -111,38 +116,9 @@ namespace ColorVictorine
 
         private Bitmap bmp;
 
-        public void DrawFigure(PictureBox label, int i)
+        public void SetFigure(PictureBox box, int i)
         {
-            bmp = new Bitmap(label.Height, label.Width);
-            //g = bmp.
-            //g = label.CreateGraphics();
-            //g.SmoothingMode = SmoothingMode.AntiAlias;
-
-            Brush brush = new SolidBrush(colors[2]);
-
-            var center = new Point(label.Width/2, label.Height/2);
-            int rad = (label.Height - 10)/2;
-
-            switch (fig_names[i])
-            {
-                case "круг":
-                    g.FillEllipse(brush, center.X - rad, center.Y - rad, rad*2, rad*2);
-                    break;
-                case "овал":
-                    g.FillEllipse(brush, center.X - rad, center.Y - rad, rad*2, rad*2);
-                    break;
-                case "квадрат":
-                    g.FillEllipse(brush, center.X - rad, center.Y - rad, rad*2, rad*2);
-                    break;
-                case "ромб":
-                    g.FillEllipse(brush, center.X - rad, center.Y - rad, rad*2, rad*2);
-                    break;
-                case "треугольник":
-                    g.FillEllipse(brush, center.X - rad, center.Y - rad, rad*2, rad*2);
-                    break;
-            }
-
-            //g.Dispose();
+            box.Image = Image.FromFile(fig_pics[i]);
         }
     }
 }

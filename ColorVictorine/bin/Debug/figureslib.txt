@@ -1,8 +1,7 @@
-овал
-круг
-квадрат
-прямоугольник
-треугольник
-ромб
-трапеция
-звезда
+овал pictures\krug.png
+круг pictures\krug.png
+квадрат pictures\oval.png
+прямоугольник pictures\treugolnik.png
+треугольник pictures\treugolnik.png
+ромб pictures\treugolnik.png
+звезда pictures\ellips.png

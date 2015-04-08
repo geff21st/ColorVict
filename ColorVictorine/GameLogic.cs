@@ -21,8 +21,10 @@ namespace ColorVictorine
         public    Label     stat_label;   
         public    Label     quest_label;
         public    Label     quest_color;
+        private PictureBox  quest_pic;
+
         public    Label[]   ans_labels;
-        public    PictureBox[]   ans_figures;
+        public PictureBox[] ans_figures;
         public    int  []   ans_values;
 
         private   Size      ans_size      =   new Size(420, 145);
@@ -180,6 +182,9 @@ namespace ColorVictorine
             {
                 true_lbl = RndNum(ans_num, true_lbl);
 
+                ans_labels[true_lbl].Show();
+                ans_figures[true_lbl].Hide();
+
                 switch (type)
                 {
                     case 1:
@@ -195,13 +200,19 @@ namespace ColorVictorine
                         break;
                     case 4:
                         true_ans = ans_num != 2 ? RndNum(data.n_figures, true_ans) : RndNum(data.n_figures, -1);
-                        //data.DrawFigure(ans_labels[true_lbl], true_ans);
+                        
+                        ans_figures[true_lbl].Show();
+                        ans_labels[true_lbl].Hide();
+
+                        data.SetFigure(ans_figures[true_lbl], true_ans);
                         break;
                     case 5:
                         true_ans = ans_num != 2 ? RndNum(data.n_figures, true_ans) : RndNum(data.n_figures, -1);
                         
                         ans_labels[true_lbl].ForeColor = Color.White;
                         ans_labels[true_lbl].Text = data.fig_names[true_ans].ToUpper();
+
+                        data.SetFigure(ans_figures[true_lbl], true_ans);
                         break;
                 }
 
@@ -231,6 +242,9 @@ namespace ColorVictorine
 
                 ans_values[i] = ans;
 
+                ans_labels[i].Show();
+                ans_figures[i].Hide();
+
                 switch (type)
                 {
                     case 1:
@@ -252,15 +266,20 @@ namespace ColorVictorine
                         break;
                     case 4:
                         ans_labels[i].Text = data.fig_names[ans].ToUpper();
-                        ans_labels[i].ForeColor = txt_color;
-                        ans_labels[i].BackColor = data.colors[RndNum(data.n_colors, -1)];
+                        ans_labels[i].ForeColor = Color.White;
+                        ans_labels[i].BackColor = data.colors[RandColr(i)];
+                        
+                        //ans_figures[i].Show();
+                        ans_labels[i].Hide();
+
+                        data.SetFigure(ans_figures[i], ans);
                         break;
                     case 5:
                         ans_labels[i].Text = data.fig_names[ans].ToUpper();
                         ans_labels[i].ForeColor = Color.White;
                         ans_labels[i].BackColor = data.colors[RandColr(i)];
 
-                        data.DrawFigure(ans_figures[i], ans);
+                        data.SetFigure(ans_figures[i], ans);
                         break;
                 }
             }
@@ -294,7 +313,7 @@ namespace ColorVictorine
         public void SetQuestLabels()
         {
             quest_label.Text = data.questions[level-1];
-            
+            quest_color.Show();
             switch (quest_type)
             {
                 case 1:
@@ -326,7 +345,9 @@ namespace ColorVictorine
                     break;
                 case 5:
                     quest_color.Click      -=   quest_color_MouseDown;
-                    //data.DrawFigure(quest_color, true_ans);
+                    quest_pic.Show();
+                    quest_color.Hide();
+                    data.SetFigure(quest_pic, true_ans);
                     break;
                 case 6:
                     quest_color.Click      -=   quest_color_MouseDown;
@@ -404,6 +425,12 @@ namespace ColorVictorine
             quest_color.TextAlign = ContentAlignment.MiddleCenter;
             quest_color.BorderStyle = BorderStyle.None;
             panel.Controls.Add(quest_color);
+
+            quest_pic = new PictureBox();
+            quest_pic.Location = quest_color.Location;
+            quest_pic.Size = quest_color.Size;
+            quest_pic.SizeMode = PictureBoxSizeMode.Zoom;
+            panel.Controls.Add(quest_pic);
 
             //статистика
             stat_label = new Label();
@@ -526,9 +553,10 @@ namespace ColorVictorine
 
             ans_figures[i] = new PictureBox();
             ans_figures[i].Size = ans_size;
+            ans_figures[i].SizeMode = PictureBoxSizeMode.CenterImage;
             //ans_figures[i].BackColor = data.bg_clr;
             ans_figures[i].Tag = i;
-            ans_figures[i].BorderStyle = BorderStyle.Fixed3D;
+            //ans_figures[i].BorderStyle = BorderStyle.Fixed3D;
 
             panel.Controls.Add(ans_figures[i]);
         }
