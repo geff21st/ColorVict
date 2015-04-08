@@ -13,7 +13,7 @@ namespace ColorVictorine
     {
         private   DelegateSetSize set_cli_size;
         private   Control   panel;
-        public    GameData data;
+        public    GameData  data;
         public    Color     qlabel_color  =   Color.FromArgb(80, 80, 80);
         public    Color     txt_color     =   Color.FromArgb(60, 60, 60);
 
@@ -22,6 +22,7 @@ namespace ColorVictorine
         public    Label     quest_label;
         public    Label     quest_color;
         public    Label[]   ans_labels;
+        public    PictureBox[]   ans_figures;
         public    int  []   ans_values;
 
         private   Size      ans_size      =   new Size(420, 145);
@@ -80,6 +81,10 @@ namespace ColorVictorine
         void DisposeAns()
         {
             foreach (var label in ans_labels)
+            {
+                label.Dispose();
+            }
+            foreach (var label in ans_figures)
             {
                 label.Dispose();
             }
@@ -190,7 +195,7 @@ namespace ColorVictorine
                         break;
                     case 4:
                         true_ans = ans_num != 2 ? RndNum(data.n_figures, true_ans) : RndNum(data.n_figures, -1);
-                        data.DrawFigure(ans_labels[true_lbl], true_ans);
+                        //data.DrawFigure(ans_labels[true_lbl], true_ans);
                         break;
                     case 5:
                         true_ans = ans_num != 2 ? RndNum(data.n_figures, true_ans) : RndNum(data.n_figures, -1);
@@ -254,6 +259,8 @@ namespace ColorVictorine
                         ans_labels[i].Text = data.fig_names[ans].ToUpper();
                         ans_labels[i].ForeColor = Color.White;
                         ans_labels[i].BackColor = data.colors[RandColr(i)];
+
+                        data.DrawFigure(ans_figures[i], ans);
                         break;
                 }
             }
@@ -319,7 +326,7 @@ namespace ColorVictorine
                     break;
                 case 5:
                     quest_color.Click      -=   quest_color_MouseDown;
-                    data.DrawFigure(quest_color, true_ans);
+                    //data.DrawFigure(quest_color, true_ans);
                     break;
                 case 6:
                     quest_color.Click      -=   quest_color_MouseDown;
@@ -481,6 +488,7 @@ namespace ColorVictorine
         private void CreateAnsLabels()
         {
             ans_labels = new Label[max_ans_num];
+            ans_figures = new PictureBox[max_ans_num];
             for (int i = 0; i < max_ans_num; i++)
             {
                 CreateAnsLabel(i);
@@ -499,6 +507,8 @@ namespace ColorVictorine
                         ans_start.X + (space + ans_size.Width)*(i%columns),
                         ans_start.Y + (space + ans_size.Height)*(i/columns)
                     );
+
+                ans_figures[i].Location = ans_labels[i].Location;
             }
         }
 
@@ -513,6 +523,14 @@ namespace ColorVictorine
             ans_labels[i].BorderStyle = BorderStyle.None;
             
             panel.Controls.Add(ans_labels[i]);
+
+            ans_figures[i] = new PictureBox();
+            ans_figures[i].Size = ans_size;
+            //ans_figures[i].BackColor = data.bg_clr;
+            ans_figures[i].Tag = i;
+            ans_figures[i].BorderStyle = BorderStyle.Fixed3D;
+
+            panel.Controls.Add(ans_figures[i]);
         }
     }
 
@@ -570,6 +588,16 @@ namespace ColorVictorine
                 field.ans_labels[i].MouseDown  += ans_MouseDown;
                 field.ans_labels[i].MouseMove  += ans_MouseMove;
                 field.ans_labels[i].MouseLeave += ans_MouseLeave;
+                field.ans_figures[i].MouseDown  += ans_MouseDown;
+                field.ans_figures[i].MouseMove  += ans_MouseMove;
+                field.ans_figures[i].MouseLeave += ans_MouseLeave;
+                switch (field.ans_type)
+                {
+                    case 4:
+                    case 5:
+                        field.ans_labels[i].MouseLeave -= ans_MouseLeave;
+                        break;
+                }
             }
 
             if (k) return;
@@ -579,6 +607,7 @@ namespace ColorVictorine
                 field.ans_labels[i].MouseMove  -= ans_MouseMove;
                 field.ans_labels[i].MouseLeave -= ans_MouseLeave;
             }
+            
         }
 
         void timer_Tick(object sender, EventArgs e)
@@ -592,8 +621,6 @@ namespace ColorVictorine
                 time = max_var;
                 EndGame();
             } 
-            
-            
         }
 
         public void NewGame()
@@ -686,7 +713,9 @@ namespace ColorVictorine
 
         private void ans_MouseLeave (object sender, EventArgs e)
         {
-            var label = (Label)sender;
+            var label = (Control)sender;
+            int i = (int)label.Tag;
+
             switch (field.ans_type)
             {
                 case 2:
@@ -697,12 +726,19 @@ namespace ColorVictorine
                     label.ForeColor = field.txt_color;
                     label.Text = "";
                     break;
+                case 4:
+                    break;
+                case 5:
+                    field.ans_labels[i].Show();
+                    field.ans_figures[i].Hide();
+                    break;
             }
         }
         private void ans_MouseMove  (object sender, EventArgs e)
         {
-            var label = (Label)sender;
+            var label = (Control)sender;
             int i = (int) label.Tag;
+            
             switch (field.ans_type)
             {
                 case 2:
@@ -712,6 +748,12 @@ namespace ColorVictorine
                 case 1:
                     label.ForeColor = Color.White;
                     label.Text = field.data.clr_names[field.ans_values[i]];
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    field.ans_labels[i].Hide();
+                    field.ans_figures[i].Show();
                     break;
             }
         }

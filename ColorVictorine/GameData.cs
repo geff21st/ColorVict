@@ -28,6 +28,8 @@ namespace ColorVictorine
         public      int         n_colors       { get; private set; }
         public      int         n_figures      { get; private set; }
 
+        private static Random r = new Random();
+
         public Color[]   seven_bttns_clr =
         {
             ColorTranslator.FromHtml("#0d3783"),
@@ -107,24 +109,40 @@ namespace ColorVictorine
             waveOutDevice.Play();
         }
 
-        public void DrawFigure(Control label, int i)
+        private Bitmap bmp;
+
+        public void DrawFigure(PictureBox label, int i)
         {
-            g = label.CreateGraphics();
-            g.SmoothingMode = SmoothingMode.AntiAlias;
+            bmp = new Bitmap(label.Height, label.Width);
+            //g = bmp.
+            //g = label.CreateGraphics();
+            //g.SmoothingMode = SmoothingMode.AntiAlias;
+
+            Brush brush = new SolidBrush(colors[2]);
+
+            var center = new Point(label.Width/2, label.Height/2);
+            int rad = (label.Height - 10)/2;
 
             switch (fig_names[i])
             {
                 case "круг":
+                    g.FillEllipse(brush, center.X - rad, center.Y - rad, rad*2, rad*2);
                     break;
                 case "овал":
+                    g.FillEllipse(brush, center.X - rad, center.Y - rad, rad*2, rad*2);
                     break;
                 case "квадрат":
+                    g.FillEllipse(brush, center.X - rad, center.Y - rad, rad*2, rad*2);
                     break;
                 case "ромб":
+                    g.FillEllipse(brush, center.X - rad, center.Y - rad, rad*2, rad*2);
                     break;
                 case "треугольник":
+                    g.FillEllipse(brush, center.X - rad, center.Y - rad, rad*2, rad*2);
                     break;
             }
+
+            //g.Dispose();
         }
     }
 }
