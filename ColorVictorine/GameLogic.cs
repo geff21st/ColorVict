@@ -13,7 +13,7 @@ namespace ColorVictorine
     {
         private   DelegateSetSize set_cli_size;
         private   Control   panel;
-        public    GameData data;
+        public    GameData  data;
         public    Color     qlabel_color  =   Color.FromArgb(80, 80, 80);
         public    Color     txt_color     =   Color.FromArgb(60, 60, 60);
 
@@ -22,6 +22,8 @@ namespace ColorVictorine
         public    Label     quest_label;
         public    Label     quest_color;
         public    Label[]   ans_labels;
+        public    Label[]   ans_figures;
+        public    int[]     ans_values;
 
         private   Size      ans_size      =   new Size(420, 145);
         private   Size      qcolor_size   =   new Size(220, 90);
@@ -80,35 +82,39 @@ namespace ColorVictorine
             {
                 label.Dispose();
             }
+            foreach (var label in ans_figures)
+            {
+                label.Dispose();
+            }
         }
 
         public void LoadField(int level)
         {
-            ReInitAnsLabels();
+            //ReInitAnsLabels();
             bool k = true;
             this.level = level;
             //
             //
-            //ans_type   = 1              ответы - закрашенные прямоугольники, при наведении отображается текст
-            //ans_type   = 2              ответы - текст, при наведении подсвечивается цветом
-            //ans_type   = 3              ответы - две метки (ДА, НЕТ)
-            //
-            //фигуры
-            //ans_type   = 4              ответы - прямоугольники с изображениями  фигур
-            //                                     (при наведении - название       фигуры)
-            //
-            //ans_type   = 5              ответы - прямоугольники с названиями     фигур 
-            //                                     (при наведении - изображение    фигуры)
-            //
-            //quest_type = 1              метка вопроса - закрашенный в цвет правильного ответа прямоугольник 
-            //quest_type = 2              метка вопроса - прямоугольник с текстом
-            //quest_type = 3              метка вопроса - кнопка "прослушать" для воспроизведения звука
-            //quest_type = 4              метка вопроса - ткст, написанный цветом (соответствует ли название фактическому цвету) 
-            //
-            //фигуры
-            //quest_type = 5              метка вопроса - изображение фигуры
-            //quest_type = 6              метка вопроса - название    фигуры
-            //
+            //  ans_type   = 1              ответы - закрашенные прямоугольники, при наведении отображается текст
+            //  ans_type   = 2              ответы - текст, при наведении подсвечивается цветом
+            //  ans_type   = 3              ответы - две метки (ДА, НЕТ)
+            //  
+            //  фигуры
+            //  ans_type   = 4              ответы - прямоугольники с изображениями  фигур
+            //                                       (при наведении - название       фигуры)
+            //  
+            //  ans_type   = 5              ответы - прямоугольники с названиями     фигур 
+            //                                       (при наведении - изображение    фигуры)
+            //  
+            //  quest_type = 1              метка вопроса - закрашенный в цвет правильного ответа прямоугольник 
+            //  quest_type = 2              метка вопроса - прямоугольник с текстом
+            //  quest_type = 3              метка вопроса - кнопка "прослушать" для воспроизведения звука
+            //  quest_type = 4              метка вопроса - ткст, написанный цветом (соответствует ли название фактическому цвету) 
+            //  
+            //  фигуры
+            //  quest_type = 5              метка вопроса - изображение фигуры
+            //  quest_type = 6              метка вопроса - название    фигуры
+            //  
             //
             switch (level)
             {
@@ -177,7 +183,7 @@ namespace ColorVictorine
                     case 1:
                         true_ans = ans_num != 2 ? RndNum(data.n_colors, true_ans) : RndNum(data.n_colors, -1);
                         ans_labels[true_lbl].Text = "";
-                        ans_labels[true_lbl].BackColor = data.colors[true_ans];
+                        ans_labels[true_lbl].BackColor = data.bg_clr;//data.colors[true_ans];
                         break;
                     case 2:
                         true_ans = ans_num != 2 ? RndNum(data.n_colors, true_ans) : RndNum(data.n_colors, -1);
@@ -197,7 +203,8 @@ namespace ColorVictorine
                         break;
                 }
                  
-                ans_labels[true_lbl].Tag = true_ans;
+                //ans_labels[true_lbl].Tag = true_ans;
+                ans_values[true_lbl] = true_ans;
             }
         }
 
@@ -220,36 +227,38 @@ namespace ColorVictorine
                 {
                     ans = r.Next(num);
                 } while (ans == true_ans || ColorIsExist(i, ans));
-                
+
+                ans_values[i] = ans;
+
                 switch (type)
                 {
                     case 1:
                         ans_labels[i].Text = "";
-                        ans_labels[i].Tag = ans;
+                        //ans_labels[i].Tag = ans;
                         ans_labels[i].ForeColor = txt_color;
                         ans_labels[i].BackColor = data.colors[ans];
                         break;
                     case 2:
                         ans_labels[i].Text = data.clr_names[ans].ToUpper();
-                        ans_labels[i].Tag = ans;
+                        //ans_labels[i].Tag = ans;
                         ans_labels[i].ForeColor = txt_color;
                         ans_labels[i].BackColor = data.bg_clr;
                         break;
                     case 3:
                         ans_labels[i].Text = data.seven_bttns_txt[i];
-                        ans_labels[i].Tag = i;
+                        //ans_labels[i].Tag = i;
                         ans_labels[i].ForeColor = Color.White;
                         ans_labels[i].BackColor = data.seven_bttns_clr[i];
                         break;
                     case 4:
                         ans_labels[i].Text = data.fig_names[ans].ToUpper();
-                        ans_labels[i].Tag = ans;
+                        //ans_labels[i].Tag = ans;
                         ans_labels[i].ForeColor = txt_color;
                         ans_labels[i].BackColor = data.colors[RndNum(data.n_colors, -1)];
                         break;
                     case 5:
                         ans_labels[i].Text = data.fig_names[ans].ToUpper();
-                        ans_labels[i].Tag = ans;
+                        //ans_labels[i].Tag = ans;
                         ans_labels[i].ForeColor = Color.White;
                         ans_labels[i].BackColor = data.colors[RandColr(i)];
                         break;
@@ -264,7 +273,7 @@ namespace ColorVictorine
 
         public int RandColr(int num, int exc = -1)
         {
-            bool key = true;
+            bool key;
             int clr;
 
             do
@@ -338,7 +347,7 @@ namespace ColorVictorine
         {
             for (int j = 0; j <= i; j++)
             {
-                if ((int)ans_labels[j].Tag == ans)
+                if (ans_values[j] == ans)
                     return true;
             }
             return false;
@@ -473,12 +482,17 @@ namespace ColorVictorine
             for (int i = 0; i < max_ans_num; i++)
             {
                 ans_labels[i].Visible = i < ans_num;// ? true : false;
+                //ans_labels[i].Hide();
+                //ans_figures[i].Show();
             }
         }
 
         private void CreateAnsLabels()
         {
-            ans_labels = new Label[max_ans_num];
+            ans_labels  = new Label[max_ans_num];
+            ans_figures = new Label[max_ans_num];
+            ans_values  = new int[max_ans_num];
+
             for (int i = 0; i < max_ans_num; i++)
             {
                 CreateAnsLabel(i);
@@ -497,6 +511,7 @@ namespace ColorVictorine
                         ans_start.X + (space + ans_size.Width)*(i%columns),
                         ans_start.Y + (space + ans_size.Height)*(i/columns)
                     );
+                ans_figures[i].Location = ans_labels[i].Location;
             }
         }
 
@@ -504,13 +519,19 @@ namespace ColorVictorine
         {
             ans_labels[i] = new Label();
             ans_labels[i].Size = ans_size;
-            ans_labels[i].Tag = -1;
+            ans_labels[i].Tag = i;
             ans_labels[i].ForeColor = txt_color;
             ans_labels[i].Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 204);
             ans_labels[i].TextAlign = ContentAlignment.MiddleCenter;
             ans_labels[i].BorderStyle = BorderStyle.None;
             
+            ans_figures[i] = new Label();
+            ans_figures[i].Size = ans_size;
+            ans_figures[i].BackColor = Color.Teal;
+            ans_figures[i].BorderStyle = BorderStyle.Fixed3D;
+
             panel.Controls.Add(ans_labels[i]);
+            panel.Controls.Add(ans_figures[i]);
         }
     }
 
@@ -700,15 +721,22 @@ namespace ColorVictorine
         private void ans_MouseMove  (object sender, EventArgs e)
         {
             var label = (Label)sender;
+            int i = (int) label.Tag;
             switch (field.ans_type)
             {
-                case 2:
-                    label.ForeColor = Color.White;
-                    label.BackColor = field.data.colors[(int)label.Tag];
-                    break;
                 case 1:
                     label.ForeColor = Color.White;
-                    label.Text = field.data.clr_names[(int)label.Tag];
+                    label.Text = field.data.clr_names[field.ans_values[i]];
+                    break;
+                case 2:
+                    label.ForeColor = Color.White;
+                    label.BackColor = field.data.colors[field.ans_values[i]];
+                    break;
+                case 4:
+
+                    break;
+                case 5:
+
                     break;
             }
         }
@@ -716,7 +744,7 @@ namespace ColorVictorine
         {
             var lbl = (Control)sender;
 
-            PerformeAct((int)lbl.Tag == field.true_ans);
+            PerformeAct((int)lbl.Tag == field.true_lbl);
             LoadLevel(false);
 
             if (mode == "на время" && !timer.Enabled) 

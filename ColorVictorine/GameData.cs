@@ -101,6 +101,7 @@ namespace ColorVictorine
         {
             waveOutDevice.Stop();
             waveOutDevice.Dispose();
+            //audioFileReader.Dispose();
             waveOutDevice = new WaveOut();
             audioFileReader = new AudioFileReader(clr_sounds[i]);
             waveOutDevice.Init(audioFileReader);
