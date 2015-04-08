@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 using System.IO;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 using Color = System.Drawing.Color;
 using NAudio;
 using NAudio.Wave;
@@ -12,17 +14,31 @@ namespace ColorVictorine
 {
     class GameData
     {
-        public Color     bg_clr =  Color.FromArgb(225, 225, 225);
-        public Color  [] colors { get; private set; }
-        public string [] names  { get; private set; }
-        public string [] sounds { get; private set; }
-        public int       N      { get; private set; }
+        public      Font        reg_font       = new Font("Calibri", 26F, FontStyle.Bold, GraphicsUnit.Point, 204);
+        public      Font        big_font       = new Font("Calibri", 28F, FontStyle.Bold, GraphicsUnit.Point, 204);
+        public      Font        small_font     = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 204);
+                    
+        public      Color       bg_clr         =  Color.FromArgb(225, 225, 225);
+        private     Graphics    g;
+        public      Color  []   colors         { get; private set; }
+        public      string []   clr_names      { get; private set; }
+        public      string []   clr_sounds     { get; private set; }
+        public      string []   fig_names      { get; private set; }
+                    
+        public      int         n_colors       { get; private set; }
+        public      int         n_figures      { get; private set; }
 
-        IWavePlayer waveOutDevice;
-        AudioFileReader audioFileReader;
+        public Color[]   seven_bttns_clr =
+        {
+            ColorTranslator.FromHtml("#0d3783"),
+            ColorTranslator.FromHtml("#ee0000")
+        };
 
-        //WMPLib.WindowsMediaPlayer player = new WMPLib.WindowsMediaPlayer();
-        //System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+        public string[]  seven_bttns_txt =
+        {
+            "Верно",
+            "Неверно"
+        };
 
         public string[] questions =
         {
@@ -32,8 +48,17 @@ namespace ColorVictorine
             "Название какого цвета ты слышишь?",
             "Нади цвет с таким названием:",
             "Какой цвет называется также?",
-            "Верно ли соответствие?"
+            "Верно ли соответствие?",
+            "Вопрос к уровню 8",
+            "Вопрос к уровню 9",
+            "Вопрос к уровню 10",
+            "Вопрос к уровню 11"
         };
+
+        
+        
+        IWavePlayer waveOutDevice;
+        AudioFileReader audioFileReader;
 
         public GameData()
         {
@@ -45,11 +70,11 @@ namespace ColorVictorine
             waveOutDevice = new WaveOut();
 
             string[] data = File.ReadAllLines("colorlib.txt");
-            N = data.Length;
+            n_colors = data.Length;
 
-            colors = new Color  [N];
-            names  = new string [N];
-            sounds = new string [N];
+            colors      = new Color  [n_colors];
+            clr_names   = new string [n_colors];
+            clr_sounds  = new string [n_colors];
 
             string[] str;
 
@@ -57,25 +82,49 @@ namespace ColorVictorine
             {
                 str = data[i].Split();
                 colors [i] = ColorTranslator.FromHtml(str[0]);
-                names  [i] = str[1];
-                sounds [i] = str[2];
+                clr_names  [i] = str[1];
+                clr_sounds [i] = str[2];
+            }
+
+            data = File.ReadAllLines("figureslib.txt");
+            n_figures = data.Length;
+
+            fig_names   = new string [n_figures];
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                fig_names[i] = data[i];
             }
         }
 
         public void PlaySound(int i)
         {
+            waveOutDevice.Stop();
             waveOutDevice.Dispose();
             waveOutDevice = new WaveOut();
-            audioFileReader = new AudioFileReader(sounds[i]);
-            //waveOutDevice.Stop();
+            audioFileReader = new AudioFileReader(clr_sounds[i]);
             waveOutDevice.Init(audioFileReader);
-            //waveOutDevice.Stop();
             waveOutDevice.Play();
-            //audio = new Audio(sounds[i], true);
-            //audio.Play();
-            //player.SoundLocation = sounds[i];
-            //player.Load();
-            //player.Play();
+        }
+
+        public void DrawFigure(Control label, int i)
+        {
+            g = label.CreateGraphics();
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+
+            switch (fig_names[i])
+            {
+                case "круг":
+                    break;
+                case "овал":
+                    break;
+                case "квадрат":
+                    break;
+                case "ромб":
+                    break;
+                case "треугольник":
+                    break;
+            }
         }
     }
 }
