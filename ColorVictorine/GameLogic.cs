@@ -22,6 +22,7 @@ namespace ColorVictorine
         public    Label     quest_label;
         public    Label     quest_color;
         public    Label[]   ans_labels;
+        public    int  []   ans_values;
 
         private   Size      ans_size      =   new Size(420, 145);
         private   Size      qcolor_size   =   new Size(220, 90);
@@ -56,6 +57,8 @@ namespace ColorVictorine
 
         void Init()
         {
+            ans_values = new int[max_ans_num];
+
             data = new GameData();
             ans_start = new Point(
                     border,
@@ -196,8 +199,8 @@ namespace ColorVictorine
                         ans_labels[true_lbl].Text = data.fig_names[true_ans].ToUpper();
                         break;
                 }
-                 
-                ans_labels[true_lbl].Tag = true_ans;
+
+                ans_values[true_lbl] = true_ans;
             }
         }
 
@@ -220,12 +223,13 @@ namespace ColorVictorine
                 {
                     ans = r.Next(num);
                 } while (ans == true_ans || ColorIsExist(i, ans));
-                
+
+                ans_values[i] = ans;
+
                 switch (type)
                 {
                     case 1:
                         ans_labels[i].Text = "";
-                        ans_labels[i].Tag = ans;
                         ans_labels[i].ForeColor = txt_color;
                         ans_labels[i].BackColor = data.colors[ans];
                         break;
@@ -237,19 +241,17 @@ namespace ColorVictorine
                         break;
                     case 3:
                         ans_labels[i].Text = data.seven_bttns_txt[i];
-                        ans_labels[i].Tag = i;
+                        ans_values[i] = i;
                         ans_labels[i].ForeColor = Color.White;
                         ans_labels[i].BackColor = data.seven_bttns_clr[i];
                         break;
                     case 4:
                         ans_labels[i].Text = data.fig_names[ans].ToUpper();
-                        ans_labels[i].Tag = ans;
                         ans_labels[i].ForeColor = txt_color;
                         ans_labels[i].BackColor = data.colors[RndNum(data.n_colors, -1)];
                         break;
                     case 5:
                         ans_labels[i].Text = data.fig_names[ans].ToUpper();
-                        ans_labels[i].Tag = ans;
                         ans_labels[i].ForeColor = Color.White;
                         ans_labels[i].BackColor = data.colors[RandColr(i)];
                         break;
@@ -338,7 +340,7 @@ namespace ColorVictorine
         {
             for (int j = 0; j <= i; j++)
             {
-                if ((int)ans_labels[j].Tag == ans)
+                if (ans_values[j] == ans)
                     return true;
             }
             return false;
@@ -504,7 +506,7 @@ namespace ColorVictorine
         {
             ans_labels[i] = new Label();
             ans_labels[i].Size = ans_size;
-            ans_labels[i].Tag = -1;
+            ans_labels[i].Tag = i;
             ans_labels[i].ForeColor = txt_color;
             ans_labels[i].Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 204);
             ans_labels[i].TextAlign = ContentAlignment.MiddleCenter;
@@ -556,7 +558,7 @@ namespace ColorVictorine
             field = new GameField(panel, ans_num, set_cli_size);
             client_size = field.client_size;
             LoadLevel(true);
-            SetEvents();
+            //SetEvents();
             timer.Tick += timer_Tick;
         }
 
@@ -648,7 +650,7 @@ namespace ColorVictorine
         {
             ans_num = i;
             field.ReloadField(ans_num);
-            SetEvents();
+            //SetEvents();
             LoadLevel();
             set_cli_size(field.ClientSize(field.ans_type));
         }
@@ -700,23 +702,24 @@ namespace ColorVictorine
         private void ans_MouseMove  (object sender, EventArgs e)
         {
             var label = (Label)sender;
+            int i = (int) label.Tag;
             switch (field.ans_type)
             {
                 case 2:
                     label.ForeColor = Color.White;
-                    label.BackColor = field.data.colors[(int)label.Tag];
+                    label.BackColor = field.data.colors[field.ans_values[i]];
                     break;
                 case 1:
                     label.ForeColor = Color.White;
-                    label.Text = field.data.clr_names[(int)label.Tag];
+                    label.Text = field.data.clr_names[field.ans_values[i]];
                     break;
             }
         }
         private void ans_MouseDown  (object sender, MouseEventArgs e)
         {
             var lbl = (Control)sender;
-
-            PerformeAct((int)lbl.Tag == field.true_ans);
+            int i = (int)lbl.Tag;
+            PerformeAct(field.ans_values[i] == field.true_ans);
             LoadLevel(false);
 
             if (mode == "на время" && !timer.Enabled) 
