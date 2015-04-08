@@ -29,15 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.ans_lbl_4 = new System.Windows.Forms.Label();
-            this.ans_lbl_3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.ans_lbl_1 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.gameMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newGameMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,110 +72,19 @@
             this.sixAnsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel
             // 
             this.panel.BackColor = System.Drawing.Color.Silver;
-            this.panel.Controls.Add(this.pictureBox1);
-            this.panel.Controls.Add(this.label3);
-            this.panel.Controls.Add(this.label2);
-            this.panel.Controls.Add(this.ans_lbl_4);
-            this.panel.Controls.Add(this.ans_lbl_3);
-            this.panel.Controls.Add(this.label4);
-            this.panel.Controls.Add(this.ans_lbl_1);
-            this.panel.Controls.Add(this.label1);
             this.panel.Controls.Add(this.menuStrip1);
             this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(668, 363);
+            this.panel.Size = new System.Drawing.Size(426, 169);
             this.panel.TabIndex = 0;
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(327, 58);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(136, 14);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "label3";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label3.Visible = false;
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.label2.Location = new System.Drawing.Point(469, 30);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(161, 70);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "ans_2";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label2.Visible = false;
-            // 
-            // ans_lbl_4
-            // 
-            this.ans_lbl_4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.ans_lbl_4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ans_lbl_4.Location = new System.Drawing.Point(345, 241);
-            this.ans_lbl_4.Name = "ans_lbl_4";
-            this.ans_lbl_4.Size = new System.Drawing.Size(300, 90);
-            this.ans_lbl_4.TabIndex = 5;
-            this.ans_lbl_4.Text = "ans_4";
-            this.ans_lbl_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ans_lbl_4.Visible = false;
-            // 
-            // ans_lbl_3
-            // 
-            this.ans_lbl_3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.ans_lbl_3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ans_lbl_3.Location = new System.Drawing.Point(30, 241);
-            this.ans_lbl_3.Name = "ans_lbl_3";
-            this.ans_lbl_3.Size = new System.Drawing.Size(300, 90);
-            this.ans_lbl_3.TabIndex = 4;
-            this.ans_lbl_3.Text = "ans_3";
-            this.ans_lbl_3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ans_lbl_3.Visible = false;
-            // 
-            // label4
-            // 
-            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label4.Location = new System.Drawing.Point(348, 130);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(297, 90);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "ans_2";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label4.Visible = false;
-            // 
-            // ans_lbl_1
-            // 
-            this.ans_lbl_1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.ans_lbl_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ans_lbl_1.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ans_lbl_1.Location = new System.Drawing.Point(30, 130);
-            this.ans_lbl_1.Name = "ans_lbl_1";
-            this.ans_lbl_1.Size = new System.Drawing.Size(300, 90);
-            this.ans_lbl_1.TabIndex = 1;
-            this.ans_lbl_1.Text = "ans_1";
-            this.ans_lbl_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ans_lbl_1.Visible = false;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.Silver;
-            this.label1.Location = new System.Drawing.Point(30, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(340, 70);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.Visible = false;
             // 
             // menuStrip1
             // 
@@ -196,7 +97,7 @@
             this.helpMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(668, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(426, 24);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -430,7 +331,7 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(129, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem2.Tag = "1";
             this.toolStripMenuItem2.Text = "Уровень 1";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.levelMenuItem_Click);
@@ -438,7 +339,7 @@
             // уровень2ToolStripMenuItem1
             // 
             this.уровень2ToolStripMenuItem1.Name = "уровень2ToolStripMenuItem1";
-            this.уровень2ToolStripMenuItem1.Size = new System.Drawing.Size(129, 22);
+            this.уровень2ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.уровень2ToolStripMenuItem1.Tag = "2";
             this.уровень2ToolStripMenuItem1.Text = "Уровень 2";
             this.уровень2ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
@@ -446,7 +347,7 @@
             // уровень3ToolStripMenuItem1
             // 
             this.уровень3ToolStripMenuItem1.Name = "уровень3ToolStripMenuItem1";
-            this.уровень3ToolStripMenuItem1.Size = new System.Drawing.Size(129, 22);
+            this.уровень3ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.уровень3ToolStripMenuItem1.Tag = "3";
             this.уровень3ToolStripMenuItem1.Text = "Уровень 3";
             this.уровень3ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
@@ -454,7 +355,7 @@
             // уровень4ToolStripMenuItem1
             // 
             this.уровень4ToolStripMenuItem1.Name = "уровень4ToolStripMenuItem1";
-            this.уровень4ToolStripMenuItem1.Size = new System.Drawing.Size(129, 22);
+            this.уровень4ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.уровень4ToolStripMenuItem1.Tag = "4";
             this.уровень4ToolStripMenuItem1.Text = "Уровень 4";
             this.уровень4ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
@@ -462,7 +363,7 @@
             // уровень5ToolStripMenuItem1
             // 
             this.уровень5ToolStripMenuItem1.Name = "уровень5ToolStripMenuItem1";
-            this.уровень5ToolStripMenuItem1.Size = new System.Drawing.Size(129, 22);
+            this.уровень5ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.уровень5ToolStripMenuItem1.Tag = "5";
             this.уровень5ToolStripMenuItem1.Text = "Уровень 5";
             this.уровень5ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
@@ -470,7 +371,7 @@
             // уровень6ToolStripMenuItem1
             // 
             this.уровень6ToolStripMenuItem1.Name = "уровень6ToolStripMenuItem1";
-            this.уровень6ToolStripMenuItem1.Size = new System.Drawing.Size(129, 22);
+            this.уровень6ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.уровень6ToolStripMenuItem1.Tag = "6";
             this.уровень6ToolStripMenuItem1.Text = "Уровень 6";
             this.уровень6ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
@@ -478,7 +379,7 @@
             // уровень7ToolStripMenuItem1
             // 
             this.уровень7ToolStripMenuItem1.Name = "уровень7ToolStripMenuItem1";
-            this.уровень7ToolStripMenuItem1.Size = new System.Drawing.Size(129, 22);
+            this.уровень7ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.уровень7ToolStripMenuItem1.Tag = "7";
             this.уровень7ToolStripMenuItem1.Text = "Уровень 7";
             this.уровень7ToolStripMenuItem1.Click += new System.EventHandler(this.levelMenuItem_Click);
@@ -486,9 +387,10 @@
             // rndClrsMenuItem
             // 
             this.rndClrsMenuItem.Name = "rndClrsMenuItem";
-            this.rndClrsMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.rndClrsMenuItem.Size = new System.Drawing.Size(152, 22);
             this.rndClrsMenuItem.Tag = "цвета";
             this.rndClrsMenuItem.Text = "Случайно";
+            this.rndClrsMenuItem.Visible = false;
             this.rndClrsMenuItem.Click += new System.EventHandler(this.randLevelMenuItem_Click);
             // 
             // rndAllMenuItem
@@ -539,22 +441,11 @@
             this.helpMenuItem.Size = new System.Drawing.Size(65, 20);
             this.helpMenuItem.Text = "Справка";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(414, 95);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(140, 108);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 9;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(668, 363);
+            this.ClientSize = new System.Drawing.Size(426, 169);
             this.Controls.Add(this.panel);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
@@ -563,7 +454,6 @@
             this.panel.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -571,13 +461,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel;
-        private System.Windows.Forms.Label ans_lbl_4;
-        private System.Windows.Forms.Label ans_lbl_3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label ans_lbl_1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem gameMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newGameMenuItem;
@@ -620,7 +503,6 @@
         private System.Windows.Forms.ToolStripMenuItem уровень5ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem уровень6ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem уровень7ToolStripMenuItem1;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

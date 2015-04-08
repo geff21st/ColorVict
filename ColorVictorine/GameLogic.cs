@@ -258,7 +258,6 @@ namespace ColorVictorine
                         break;
                     case 2:
                         ans_labels[i].Text = data.clr_names[ans].ToUpper();
-                        ans_labels[i].Tag = ans;
                         ans_labels[i].ForeColor = txt_color;
                         ans_labels[i].BackColor = data.bg_clr;
                         break;
@@ -743,7 +742,8 @@ namespace ColorVictorine
         {
             rnd_level = false;
             level = i;
-            LoadLevel(true);
+            NewGame();
+            //LoadLevel(true);
         }
 
         private void ans_MouseLeave (object sender, EventArgs e)

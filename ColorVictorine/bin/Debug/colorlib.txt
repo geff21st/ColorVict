@@ -7,4 +7,4 @@
 #474747 серый sounds\gray.mp3
 #FF8800	оранжевый sounds\orange.mp3
 #990000 бордовый sounds\vinous.mp3
-#ff00ff пурпурный sounds\magenta.mp3
+#ff00ff розовый sounds\pink.mp3

@@ -27,19 +27,12 @@ namespace ColorVictorine
             set_cli_size += size => { ClientSize = size; CenterToScreen(); };
             game = new GameLogic(panel, set_cli_size, timer);
 
-            Text = "Изучаем цвета веместе! Тут еще и фигуры будут";
+            Text = "Изучаем цвета и фигуры вместе!";
             StartPosition = FormStartPosition.CenterScreen;
             ClientSize = game.client_size;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
-        }
-
-        private void panel_MouseDown(object sender, MouseEventArgs e)
-        {
-            //game.LoadLevel();
-            game.StartTimer();
-            //Text = timer.Enabled.ToString();
         }
 
         private void ansNumMenuItem_Click(object sender, EventArgs e)
