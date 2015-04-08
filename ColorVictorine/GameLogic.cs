@@ -191,8 +191,8 @@ namespace ColorVictorine
                         break;
                     case 5:
                         true_ans = ans_num != 2 ? RndNum(data.n_figures, true_ans) : RndNum(data.n_figures, -1);
-                        ans_labels[true_lbl].BackColor = data.bg_clr;
-                        ans_labels[true_lbl].ForeColor = txt_color;
+                        
+                        ans_labels[true_lbl].ForeColor = Color.White;
                         ans_labels[true_lbl].Text = data.fig_names[true_ans].ToUpper();
                         break;
                 }
@@ -255,19 +255,25 @@ namespace ColorVictorine
                         break;
                 }
             }
+
+            if (type == 5 || type == 4)
+            {
+                ans_labels[true_lbl].BackColor = data.colors[RandColr(ans_num, true_lbl)];
+            }
         }
 
-        public int RandColr(int num)
+        public int RandColr(int num, int exc = -1)
         {
             bool key = true;
             int clr;
 
             do
             {
-                 key = true;
+                key = true;
                 clr = RndNum(data.n_colors, -1);
                 for (int i = 0; i < num; i++)
                 {
+                    if (exc == i) continue;
                     if (ans_labels[i].BackColor == data.colors[clr])
                         key = false;
                 }
@@ -662,7 +668,8 @@ namespace ColorVictorine
             
             max_var = time = a;
             this.mode = mode;
-            LoadLevel();
+            //LoadLevel();
+            NewGame();
         }
         public void SetRandLevel()
         {
