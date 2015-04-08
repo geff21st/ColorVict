@@ -201,6 +201,10 @@ namespace ColorVictorine
                     case 4:
                         true_ans = ans_num != 2 ? RndNum(data.n_figures, true_ans) : RndNum(data.n_figures, -1);
                         
+                        ans_labels[true_lbl].Text = data.fig_names[true_ans].ToUpper();
+                        ans_labels[true_lbl].ForeColor = txt_color;
+                        ans_labels[true_lbl].BackColor = panel.BackColor;
+
                         ans_figures[true_lbl].Show();
                         ans_labels[true_lbl].Hide();
 
@@ -266,13 +270,13 @@ namespace ColorVictorine
                         break;
                     case 4:
                         ans_labels[i].Text = data.fig_names[ans].ToUpper();
-                        ans_labels[i].ForeColor = Color.White;
-                        ans_labels[i].BackColor = data.colors[RandColr(i)];
+                        ans_labels[i].ForeColor = txt_color;
+                        ans_labels[i].BackColor = panel.BackColor;
                         
-                        //ans_figures[i].Show();
-                        ans_labels[i].Hide();
-
                         data.SetFigure(ans_figures[i], ans);
+                        ans_labels[i].Hide();
+                        ans_figures[i].Show();
+                        
                         break;
                     case 5:
                         ans_labels[i].Text = data.fig_names[ans].ToUpper();
@@ -284,7 +288,7 @@ namespace ColorVictorine
                 }
             }
 
-            if (type == 5 || type == 4)
+            if (type == 5)
             {
                 ans_labels[true_lbl].BackColor = data.colors[RandColr(ans_num, true_lbl)];
             }
@@ -506,6 +510,7 @@ namespace ColorVictorine
 
         void ShowAns(int ans_num)
         {
+            if (ans_type == 4) return;
             for (int i = 0; i < max_ans_num; i++)
             {
                 ans_labels[i].Visible = i < ans_num;// ? true : false;
@@ -622,6 +627,8 @@ namespace ColorVictorine
                 switch (field.ans_type)
                 {
                     case 4:
+                        field.ans_figures[i].MouseLeave -= ans_MouseLeave;
+                        break;
                     case 5:
                         field.ans_labels[i].MouseLeave -= ans_MouseLeave;
                         break;
@@ -755,6 +762,8 @@ namespace ColorVictorine
                     label.Text = "";
                     break;
                 case 4:
+                    field.ans_labels[i].Hide();
+                    field.ans_figures[i].Show();
                     break;
                 case 5:
                     field.ans_labels[i].Show();
@@ -778,6 +787,8 @@ namespace ColorVictorine
                     label.Text = field.data.clr_names[field.ans_values[i]];
                     break;
                 case 4:
+                    field.ans_labels[i].Show();
+                    field.ans_figures[i].Hide();
                     break;
                 case 5:
                     field.ans_labels[i].Hide();

@@ -1,7 +1,8 @@
-овал pictures\krug.png
-круг pictures\krug.png
-квадрат pictures\oval.png
-прямоугольник pictures\treugolnik.png
+﻿овал pictures\ellips.png
+круг pictures\kryg.png
+квадрат pictures\kvadrat.png
+прямоугольник pictures\pramoygolnik.png
 треугольник pictures\treugolnik.png
-ромб pictures\treugolnik.png
-звезда pictures\ellips.png
+ромб pictures\romb.png
+звезда pictures\zvezda.png
+сердце pictures\serdce.png
