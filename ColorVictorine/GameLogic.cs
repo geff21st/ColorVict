@@ -251,12 +251,30 @@ namespace ColorVictorine
                         ans_labels[i].Text = data.fig_names[ans].ToUpper();
                         ans_labels[i].Tag = ans;
                         ans_labels[i].ForeColor = Color.White;
-                        ans_labels[i].BackColor = data.colors[RndNum(data.n_colors, -1)];
+                        ans_labels[i].BackColor = data.colors[RandColr(i)];
                         break;
                 }
             }
         }
 
+        public int RandColr(int num)
+        {
+            bool key = true;
+            int clr;
+
+            do
+            {
+                 key = true;
+                clr = RndNum(data.n_colors, -1);
+                for (int i = 0; i < num; i++)
+                {
+                    if (ans_labels[i].BackColor == data.colors[clr])
+                        key = false;
+                }
+            } while (!key);
+
+            return clr;
+        }
 
         public void SetQuestLabels()
         {
