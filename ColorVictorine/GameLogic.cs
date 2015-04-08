@@ -67,9 +67,9 @@ namespace ColorVictorine
             CreateField();
         }
 
-        public void ReloadField(int ans_num)
+        public void ReloadField(int ans_num, bool k = true)
         {
-            this.ans_num = ans_num;
+            if (k) this.ans_num = ans_num;
             DisposeAns();
             CreateAnsLabels();
             PlaceAnsLabes(ans_start);
@@ -90,6 +90,7 @@ namespace ColorVictorine
             ReInitAnsLabels();
             bool k = true;
             this.level = level;
+<<<<<<< HEAD
             //
             //
             //ans_type   = 1              ответы - закрашенные прямоугольники, при наведении отображается текст
@@ -147,6 +148,68 @@ namespace ColorVictorine
             
             SetAnsLabels(num, ans_type);
             ShowAns(num);
+=======
+
+            switch (level)
+            {
+                case 1:
+                    ans_type = 1;
+                    quest_type = 1;
+                    break;
+                case 2: 
+                    ans_type = 2;
+                    quest_type = 1;
+                    break;
+                case 3:
+                    ans_type = 1;
+                    quest_type = 2;
+                    break;
+                case 4:
+                    quest_type = 2;
+                    ans_type = 2;
+                    break;
+                case 5:
+                    quest_type = 3;
+                    ans_type = 1;
+                    break;
+                case 6:
+                    quest_type = 3;
+                    ans_type = 2;
+                    break;
+                case 7:
+                    quest_type = 3;
+                    ans_type = 3;
+                    k = false;
+                    break;
+            }
+            SetTrueAns(ans_type);
+            
+            SetQuestLabels();
+            PlaсeLabels();
+        }
+
+        void PlaсeLabels()
+        {
+            quest_label.Size     = QLabelSize(quest_type);
+            quest_color.Location = QColorLocation(quest_type);
+            quest_color.Size     = QColorSize(quest_type);
+
+            //if (quest_type == 3)
+            //{
+            //    ReloadField(2);
+            //    PlaceAnsLabels(new Point(
+            //                        ans_start.X,
+            //                        ans_start.Y + ans_size.Height + space*3
+            //                        ));
+            //    SetAnsLabels(true, ans_type);
+            //}
+            //else
+            {
+                ReloadField(ans_num, false);
+                SetAnsLabels(true, ans_type);
+                PlaceAnsLabels(ans_start);
+            }
+>>>>>>> origin/mybranch
         }
 
         int RndNum(int to, int except)
@@ -257,6 +320,7 @@ namespace ColorVictorine
                         break;
                 }
             }
+<<<<<<< HEAD
 
             if (type == 5 || type == 4)
             {
@@ -282,6 +346,8 @@ namespace ColorVictorine
             } while (!key);
 
             return clr;
+=======
+>>>>>>> origin/mybranch
         }
 
         public void SetQuestLabels()
@@ -371,6 +437,37 @@ namespace ColorVictorine
             CreateQuestLbls();
             CreateAnsLabels();
         }
+
+        Point QColorLocation(int type)
+        {
+            return type == 3
+                   ?
+                   ans_start
+                   :
+                   new Point( ans_start.X + quest_label.Width + space,
+                              quest_label.Location.Y );
+        }
+
+        Size QColorSize(int type)
+        {
+            return type == 3
+                   ?
+                   new Size( QLabelSize(type).Width, ans_size.Height)
+                   :
+                   qcolor_size;
+        }
+
+        Size QLabelSize(int type)
+        {
+            return type != 3
+                   ? 
+                   new Size( client_size.Width - qcolor_size.Width - ans_start.X*2 - space,
+                             qcolor_size.Height )
+                   :
+                   new Size( client_size.Width - ans_start.X*2,
+                             qcolor_size.Height );
+        }
+
         private void CreateQuestLbls()
         {
             //текст вопроса
@@ -485,6 +582,7 @@ namespace ColorVictorine
             {
                 CreateAnsLabel(i);
             }
+<<<<<<< HEAD
 
             PlaceAnsLabes(ans_start);
 
@@ -492,13 +590,24 @@ namespace ColorVictorine
         }
         
         void PlaceAnsLabes(Point ans_start)
+=======
+            PlaceAnsLabels(ans_start);
+        }
+        private void PlaceAnsLabels(Point ans_start)
+>>>>>>> origin/mybranch
         {
             for (int i = 0; i < ans_num; i++)
             {
                 ans_labels[i].Location = new Point(
+<<<<<<< HEAD
                         ans_start.X + (space + ans_size.Width)*(i%columns),
                         ans_start.Y + (space + ans_size.Height)*(i/columns)
                     );
+=======
+                    ans_start.X + (space + ans_size.Width) * (i % columns),
+                    ans_start.Y + (space + ans_size.Height) * (i / columns)
+                );
+>>>>>>> origin/mybranch
             }
         }
 
@@ -506,7 +615,11 @@ namespace ColorVictorine
         {
             ans_labels[i] = new Label();
             ans_labels[i].Size = ans_size;
+<<<<<<< HEAD
             ans_labels[i].Tag = i;
+=======
+            ans_labels[i].Tag = -1;
+>>>>>>> origin/mybranch
             ans_labels[i].ForeColor = txt_color;
             ans_labels[i].Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 204);
             ans_labels[i].TextAlign = ContentAlignment.MiddleCenter;
